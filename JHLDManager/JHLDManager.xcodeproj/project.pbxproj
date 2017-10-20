@@ -34,6 +34,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0044264A1F99977A000E9CB3 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		0044264B1F99977A000E9CB3 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		0044264C1F99977A000E9CB3 /* NavViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavViewController.h; sourceTree = "<group>"; };
+		0044264D1F99977A000E9CB3 /* NavViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavViewController.m; sourceTree = "<group>"; };
 		0084693D1F998419002C99C6 /* JHLDManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JHLDManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		008469401F998419002C99C6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		008469411F998419002C99C6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -81,6 +85,10 @@
 		004426451F999456000E9CB3 /* BaseController */ = {
 			isa = PBXGroup;
 			children = (
+				0044264B1F99977A000E9CB3 /* BaseViewController.h */,
+				0044264A1F99977A000E9CB3 /* BaseViewController.m */,
+				0044264C1F99977A000E9CB3 /* NavViewController.h */,
+				0044264D1F99977A000E9CB3 /* NavViewController.m */,
 			);
 			path = BaseController;
 			sourceTree = SOURCE_ROOT;
