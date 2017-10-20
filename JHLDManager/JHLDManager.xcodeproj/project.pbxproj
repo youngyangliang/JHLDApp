@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		008469421F998419002C99C6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 008469411F998419002C99C6 /* AppDelegate.m */; };
-		008469451F998419002C99C6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 008469441F998419002C99C6 /* ViewController.m */; };
-		008469481F998419002C99C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 008469461F998419002C99C6 /* Main.storyboard */; };
 		0084694A1F998419002C99C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 008469491F998419002C99C6 /* Assets.xcassets */; };
 		0084694D1F998419002C99C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0084694B1F998419002C99C6 /* LaunchScreen.storyboard */; };
 		008469501F998419002C99C6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0084694F1F998419002C99C6 /* main.m */; };
@@ -36,12 +34,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		004426461F999456000E9CB3 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		004426471F999456000E9CB3 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		004426481F999456000E9CB3 /* NavViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavViewController.h; sourceTree = "<group>"; };
+		004426491F999456000E9CB3 /* NavViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavViewController.m; sourceTree = "<group>"; };
 		0084693D1F998419002C99C6 /* JHLDManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JHLDManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		008469401F998419002C99C6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		008469411F998419002C99C6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		008469431F998419002C99C6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		008469441F998419002C99C6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		008469471F998419002C99C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		008469491F998419002C99C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0084694C1F998419002C99C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0084694E1F998419002C99C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -83,6 +82,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		004426451F999456000E9CB3 /* BaseController */ = {
+			isa = PBXGroup;
+			children = (
+				004426461F999456000E9CB3 /* BaseViewController.h */,
+				004426471F999456000E9CB3 /* BaseViewController.m */,
+				004426481F999456000E9CB3 /* NavViewController.h */,
+				004426491F999456000E9CB3 /* NavViewController.m */,
+			);
+			path = BaseController;
+			sourceTree = SOURCE_ROOT;
+		};
 		008469341F998419002C99C6 = {
 			isa = PBXGroup;
 			children = (
@@ -108,11 +118,9 @@
 		0084693F1F998419002C99C6 /* JHLDManager */ = {
 			isa = PBXGroup;
 			children = (
+				004426451F999456000E9CB3 /* BaseController */,
 				008469401F998419002C99C6 /* AppDelegate.h */,
 				008469411F998419002C99C6 /* AppDelegate.m */,
-				008469431F998419002C99C6 /* ViewController.h */,
-				008469441F998419002C99C6 /* ViewController.m */,
-				008469461F998419002C99C6 /* Main.storyboard */,
 				008469491F998419002C99C6 /* Assets.xcassets */,
 				0084694B1F998419002C99C6 /* LaunchScreen.storyboard */,
 				0084694E1F998419002C99C6 /* Info.plist */,
@@ -267,7 +275,6 @@
 			files = (
 				0084694D1F998419002C99C6 /* LaunchScreen.storyboard in Resources */,
 				0084694A1F998419002C99C6 /* Assets.xcassets in Resources */,
-				008469481F998419002C99C6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,7 +350,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				008469451F998419002C99C6 /* ViewController.m in Sources */,
 				008469501F998419002C99C6 /* main.m in Sources */,
 				008469421F998419002C99C6 /* AppDelegate.m in Sources */,
 			);
@@ -381,14 +387,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		008469461F998419002C99C6 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				008469471F998419002C99C6 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		0084694B1F998419002C99C6 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -512,7 +510,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NW29WXZ727;
 				INFOPLIST_FILE = JHLDManager/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = booway.com.JHLDManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -528,7 +526,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NW29WXZ727;
 				INFOPLIST_FILE = JHLDManager/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = booway.com.JHLDManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
