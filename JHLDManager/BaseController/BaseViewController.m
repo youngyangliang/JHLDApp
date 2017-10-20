@@ -1,16 +1,14 @@
 //
 //  BaseViewController.m
-//  huanjing
+//  JHLDManager
 //
-//  Created by 杨亮 on 2017/8/28.
-//  Copyright © 2017年 com.booway. All rights reserved.
+//  Created by 杨亮 on 2017/10/20.
+//  Copyright © 2017年 booway.com. All rights reserved.
 //
 
 #import "BaseViewController.h"
 
-#define  adjustsScrollViewInsets_NO(scrollView,vc)
-
-@interface BaseViewController ()<UINavigationBarDelegate>
+@interface BaseViewController ()
 
 @end
 
@@ -18,26 +16,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.view.backgroundColor = backgroudColor;
-//    self.automaticallyAdjustsScrollViewInsets = NO;
-    
-    if (@available(iOS 11.0, *)){
-//        self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-    } else {
-        self.automaticallyAdjustsScrollViewInsets = false;
-    };
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:[UIImage imageNamed:@"left_back"] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:@"left_back"] forState:UIControlStateHighlighted];
+    [button setImage:[UIImage imageNamed:@"nav_ico_left"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"nav_ico_left"] forState:UIControlStateHighlighted];
     button.frame = CGRectMake(0, 0, 44, 44);
-    [button addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    [button addTarget:self action:@selector(backButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
 }
 
--(void)backBtnClick{
+-(void)backButtonClick:(UIButton *)button{
     [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning {
