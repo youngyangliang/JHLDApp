@@ -25,6 +25,10 @@
 		E12302831F99A0D300979FAC /* ProblemSuperviseController.m in Sources */ = {isa = PBXBuildFile; fileRef = E12302821F99A0D300979FAC /* ProblemSuperviseController.m */; };
 		E12302861F99A0E400979FAC /* ProjectMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = E12302851F99A0E400979FAC /* ProjectMapController.m */; };
 		E12302891F99A14400979FAC /* NavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E12302881F99A14400979FAC /* NavViewController.m */; };
+		E12302911F99ECCE00979FAC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E12302901F99ECCE00979FAC /* LoginViewController.m */; };
+		E12302941F9A3EA400979FAC /* BaseScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E12302931F9A3EA400979FAC /* BaseScrollView.m */; };
+		E12302971F9A493600979FAC /* BaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E12302961F9A493600979FAC /* BaseTableView.m */; };
+		E123029A1F9A539100979FAC /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E12302991F9A539100979FAC /* RegisterViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +90,14 @@
 		E12302851F99A0E400979FAC /* ProjectMapController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectMapController.m; sourceTree = "<group>"; };
 		E12302871F99A14400979FAC /* NavViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavViewController.h; sourceTree = "<group>"; };
 		E12302881F99A14400979FAC /* NavViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavViewController.m; sourceTree = "<group>"; };
+		E123028F1F99ECCE00979FAC /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		E12302901F99ECCE00979FAC /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		E12302921F9A3EA400979FAC /* BaseScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseScrollView.h; sourceTree = "<group>"; };
+		E12302931F9A3EA400979FAC /* BaseScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseScrollView.m; sourceTree = "<group>"; };
+		E12302951F9A493600979FAC /* BaseTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableView.h; sourceTree = "<group>"; };
+		E12302961F9A493600979FAC /* BaseTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableView.m; sourceTree = "<group>"; };
+		E12302981F9A539100979FAC /* RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		E12302991F9A539100979FAC /* RegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,15 +135,12 @@
 				E12302791F999FF700979FAC /* BaseViewController.m */,
 				E12302871F99A14400979FAC /* NavViewController.h */,
 				E12302881F99A14400979FAC /* NavViewController.m */,
+				E12302921F9A3EA400979FAC /* BaseScrollView.h */,
+				E12302931F9A3EA400979FAC /* BaseScrollView.m */,
+				E12302951F9A493600979FAC /* BaseTableView.h */,
+				E12302961F9A493600979FAC /* BaseTableView.m */,
 			);
 			path = BaseController;
-			sourceTree = SOURCE_ROOT;
-		};
-		0044264E1F99A971000E9CB3 /* Tool */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Tool;
 			sourceTree = SOURCE_ROOT;
 		};
 		0044264F1F99A971000E9CB3 /* Category */ = {
@@ -213,7 +222,6 @@
 			children = (
 				0044264F1F99A971000E9CB3 /* Category */,
 				004426501F99A971000E9CB3 /* Config */,
-				0044264E1F99A971000E9CB3 /* Tool */,
 				E123025B1F999E1E00979FAC /* Main */,
 				004426451F999456000E9CB3 /* BaseController */,
 				008469401F998419002C99C6 /* AppDelegate.h */,
@@ -265,6 +273,7 @@
 		E123025B1F999E1E00979FAC /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				E123028B1F99ECB300979FAC /* Login */,
 				E123025C1F999E1E00979FAC /* Home */,
 				E12302601F999E1E00979FAC /* MeCentre */,
 				E12302641F999E1E00979FAC /* ProblemSupervise */,
@@ -371,6 +380,41 @@
 			sourceTree = "<group>";
 		};
 		E123026B1F999E1E00979FAC /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E123028B1F99ECB300979FAC /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				E123028C1F99ECB300979FAC /* Controller */,
+				E123028D1F99ECB300979FAC /* Model */,
+				E123028E1F99ECB300979FAC /* View */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		E123028C1F99ECB300979FAC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E123028F1F99ECCE00979FAC /* LoginViewController.h */,
+				E12302901F99ECCE00979FAC /* LoginViewController.m */,
+				E12302981F9A539100979FAC /* RegisterViewController.h */,
+				E12302991F9A539100979FAC /* RegisterViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E123028D1F99ECB300979FAC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E123028E1F99ECB300979FAC /* View */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -568,14 +612,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				E123027A1F999FF700979FAC /* BaseViewController.m in Sources */,
+				E123029A1F9A539100979FAC /* RegisterViewController.m in Sources */,
 				E12302891F99A14400979FAC /* NavViewController.m in Sources */,
 				0044265A1F99C4AE000E9CB3 /* UIButton+FillColor.m in Sources */,
 				E12302831F99A0D300979FAC /* ProblemSuperviseController.m in Sources */,
+				E12302911F99ECCE00979FAC /* LoginViewController.m in Sources */,
 				E12302861F99A0E400979FAC /* ProjectMapController.m in Sources */,
 				008469501F998419002C99C6 /* main.m in Sources */,
 				E12302591F999A5900979FAC /* BaseTabBarController.m in Sources */,
+				E12302971F9A493600979FAC /* BaseTableView.m in Sources */,
 				008469421F998419002C99C6 /* AppDelegate.m in Sources */,
 				E12302801F99A0C000979FAC /* MeCentreController.m in Sources */,
+				E12302941F9A3EA400979FAC /* BaseScrollView.m in Sources */,
 				0044265B1F99C4AE000E9CB3 /* NSArray+Log.m in Sources */,
 				004426A41F99D1A1000E9CB3 /* MeCentreCell.m in Sources */,
 				004426531F99C367000E9CB3 /* UIView+Category.m in Sources */,

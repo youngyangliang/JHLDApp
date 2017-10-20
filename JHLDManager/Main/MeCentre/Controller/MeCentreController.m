@@ -8,6 +8,7 @@
 
 #import "MeCentreController.h"
 #import "MeCentreCell.h"
+#import "LoginViewController.h"
 
 @interface MeCentreController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
@@ -22,30 +23,25 @@
 }
 
 -(void)setUpUI{
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    BaseTableView *tableView = [[BaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView = tableView;
     tableView.frame = self.view.bounds;
     tableView.dataSource = self;
     tableView.delegate  = self;
-    tableView.estimatedRowHeight = 44;
-    tableView.rowHeight = UITableViewAutomaticDimension;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    tableView.scrollEnabled = NO;
+    tableView.tableHeaderView = [self headView];
     [self.view addSubview:tableView];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataArray.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *Identifier = @"Identifier";
     MeCentreCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier];
     if (cell == nil) {
         cell = [[MeCentreCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     NSDictionary *dict = self.dataArray[indexPath.row];
@@ -54,6 +50,56 @@
     
     return cell;
 }
+
+-(UIView *)headView{
+    UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 160)];
+    
+    UIImageView *headImg = [[UIImageView alloc]init];
+    [headView addSubview:headImg];
+    [headImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.mas_equalTo(80);
+        make.centerX.equalTo(headView);
+        make.top.equalTo(headView).offset(30);
+    }];
+    headImg.image = [UIImage imageNamed:@"headIcon"];
+    [headImg rounded:40];
+    
+    UILabel *nameLabel = [[UILabel alloc]init];
+    [headView addSubview:nameLabel];
+    [nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(headImg.mas_bottom).offset(10);
+        make.centerX.equalTo(headView);
+    }];
+    nameLabel.font = [UIFont boldSystemFontOfSize:18];
+    nameLabel.text = @"昵称：黄辉";
+    
+    UIView *line = [[UIView alloc]init];
+    [headView addSubview:line];
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(headView);
+        make.height.mas_equalTo(0.5);
+    }];
+    line.backgroundColor = UIColorFromRGB(0x999999);
+    return headView;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    switch (indexPath.row) {
+        case 0:
+        {
+            LoginViewController *loginVC = [[LoginViewController alloc]init];
+            [self.navigationController pushViewController:loginVC animated:YES];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+
+
 -(NSMutableArray *)dataArray{
     if (!_dataArray) {
         _dataArray = [NSMutableArray arrayWithObjects:

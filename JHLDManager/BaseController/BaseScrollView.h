@@ -1,5 +1,5 @@
 //
-//  BaseViewController.h
+//  BaseScrollView.h
 //  JHLDManager
 //
 //  Created by 杨亮 on 2017/10/20.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BaseViewController : UIViewController
-//-(void)backButtonClick:(UIButton *)button;
+@interface BaseScrollView : UIScrollView
+
 @end

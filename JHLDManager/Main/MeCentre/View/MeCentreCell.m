@@ -34,8 +34,16 @@
         make.centerY.equalTo(imgView);
         make.left.equalTo(imgView.mas_right).offset(15);
     }];
-    textLab.textColor = [UIColor whiteColor];
     self.textLab = textLab;
+    
+    UIImageView *rightArrow = [[UIImageView alloc]init];
+    [self.contentView addSubview:rightArrow];
+    [rightArrow mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(imgView);
+        make.right.equalTo(self.contentView).offset(-15);
+        make.width.height.mas_equalTo(20);
+    }];
+    rightArrow.image = [UIImage imageNamed:@"arrow_right"];
     
     UIView *line = [[UIView alloc]init];
     [self.contentView addSubview:line];
