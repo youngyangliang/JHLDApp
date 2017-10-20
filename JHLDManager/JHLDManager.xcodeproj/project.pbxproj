@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		004426531F99C367000E9CB3 /* UIView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 004426521F99C367000E9CB3 /* UIView+Category.m */; };
+		0044265A1F99C4AE000E9CB3 /* UIButton+FillColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 004426561F99C4AD000E9CB3 /* UIButton+FillColor.m */; };
+		0044265B1F99C4AE000E9CB3 /* NSArray+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 004426591F99C4AE000E9CB3 /* NSArray+Log.m */; };
 		008469421F998419002C99C6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 008469411F998419002C99C6 /* AppDelegate.m */; };
 		0084694A1F998419002C99C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 008469491F998419002C99C6 /* Assets.xcassets */; };
 		0084694D1F998419002C99C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0084694B1F998419002C99C6 /* LaunchScreen.storyboard */; };
@@ -41,6 +44,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		004426511F99C367000E9CB3 /* UIView+Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Category.h"; sourceTree = "<group>"; };
+		004426521F99C367000E9CB3 /* UIView+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Category.m"; sourceTree = "<group>"; };
+		004426551F99C45D000E9CB3 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		004426561F99C4AD000E9CB3 /* UIButton+FillColor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+FillColor.m"; sourceTree = "<group>"; };
+		004426571F99C4AD000E9CB3 /* NSArray+Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+Log.h"; sourceTree = "<group>"; };
+		004426581F99C4AE000E9CB3 /* UIButton+FillColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+FillColor.h"; sourceTree = "<group>"; };
+		004426591F99C4AE000E9CB3 /* NSArray+Log.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Log.m"; sourceTree = "<group>"; };
+		0044265C1F99C4EC000E9CB3 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		0084693D1F998419002C99C6 /* JHLDManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JHLDManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		008469401F998419002C99C6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		008469411F998419002C99C6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -113,6 +124,35 @@
 			path = BaseController;
 			sourceTree = SOURCE_ROOT;
 		};
+		0044264E1F99A971000E9CB3 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tool;
+			sourceTree = SOURCE_ROOT;
+		};
+		0044264F1F99A971000E9CB3 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				004426571F99C4AD000E9CB3 /* NSArray+Log.h */,
+				004426591F99C4AE000E9CB3 /* NSArray+Log.m */,
+				004426581F99C4AE000E9CB3 /* UIButton+FillColor.h */,
+				004426561F99C4AD000E9CB3 /* UIButton+FillColor.m */,
+				004426511F99C367000E9CB3 /* UIView+Category.h */,
+				004426521F99C367000E9CB3 /* UIView+Category.m */,
+			);
+			path = Category;
+			sourceTree = SOURCE_ROOT;
+		};
+		004426501F99A971000E9CB3 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				004426551F99C45D000E9CB3 /* Header.h */,
+				0044265C1F99C4EC000E9CB3 /* Common.h */,
+			);
+			path = Config;
+			sourceTree = SOURCE_ROOT;
+		};
 		008469341F998419002C99C6 = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +178,9 @@
 		0084693F1F998419002C99C6 /* JHLDManager */ = {
 			isa = PBXGroup;
 			children = (
+				0044264F1F99A971000E9CB3 /* Category */,
+				004426501F99A971000E9CB3 /* Config */,
+				0044264E1F99A971000E9CB3 /* Tool */,
 				E123025B1F999E1E00979FAC /* Main */,
 				004426451F999456000E9CB3 /* BaseController */,
 				008469401F998419002C99C6 /* AppDelegate.h */,
@@ -499,9 +542,13 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-JHLDManager/Pods-JHLDManager-resources.sh",
+				"${PODS_ROOT}/IQKeyboardManager/IQKeyBoardManager/Resources/IQKeyboardManager.bundle",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -517,12 +564,15 @@
 			files = (
 				E123027A1F999FF700979FAC /* BaseViewController.m in Sources */,
 				E12302891F99A14400979FAC /* NavViewController.m in Sources */,
+				0044265A1F99C4AE000E9CB3 /* UIButton+FillColor.m in Sources */,
 				E12302831F99A0D300979FAC /* ProblemSuperviseController.m in Sources */,
 				E12302861F99A0E400979FAC /* ProjectMapController.m in Sources */,
 				008469501F998419002C99C6 /* main.m in Sources */,
 				E12302591F999A5900979FAC /* BaseTabBarController.m in Sources */,
 				008469421F998419002C99C6 /* AppDelegate.m in Sources */,
 				E12302801F99A0C000979FAC /* MeCentreController.m in Sources */,
+				0044265B1F99C4AE000E9CB3 /* NSArray+Log.m in Sources */,
+				004426531F99C367000E9CB3 /* UIView+Category.m in Sources */,
 				E123027D1F99A08F00979FAC /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
