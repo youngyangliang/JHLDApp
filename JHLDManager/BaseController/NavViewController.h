@@ -1,9 +1,9 @@
 //
 //  NavViewController.h
-//  huanjing
+//  JHLDManager
 //
-//  Created by 杨亮 on 2017/8/28.
-//  Copyright © 2017年 com.booway. All rights reserved.
+//  Created by 杨亮 on 2017/10/20.
+//  Copyright © 2017年 booway.com. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
