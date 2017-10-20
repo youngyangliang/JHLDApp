@@ -15,6 +15,7 @@
 		008469501F998419002C99C6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0084694F1F998419002C99C6 /* main.m */; };
 		0084695A1F998419002C99C6 /* JHLDManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 008469591F998419002C99C6 /* JHLDManagerTests.m */; };
 		008469651F998419002C99C6 /* JHLDManagerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 008469641F998419002C99C6 /* JHLDManagerUITests.m */; };
+		CEBC7716C9FD72488D7AC1F0 /* libPods-JHLDManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB4C65FA0624990F3420C15 /* libPods-JHLDManager.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,9 @@
 		008469601F998419002C99C6 /* JHLDManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JHLDManagerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		008469641F998419002C99C6 /* JHLDManagerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JHLDManagerUITests.m; sourceTree = "<group>"; };
 		008469661F998419002C99C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0AB4C65FA0624990F3420C15 /* libPods-JHLDManager.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JHLDManager.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6245EA9EFF2B9958E1CA0706 /* Pods-JHLDManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JHLDManager.release.xcconfig"; path = "Pods/Target Support Files/Pods-JHLDManager/Pods-JHLDManager.release.xcconfig"; sourceTree = "<group>"; };
+		A2A1CA3F4027D7F95F2F75C3 /* Pods-JHLDManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JHLDManager.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JHLDManager/Pods-JHLDManager.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEBC7716C9FD72488D7AC1F0 /* libPods-JHLDManager.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +90,8 @@
 				008469581F998419002C99C6 /* JHLDManagerTests */,
 				008469631F998419002C99C6 /* JHLDManagerUITests */,
 				0084693E1F998419002C99C6 /* Products */,
+				C041ABA7028A567D1D546E08 /* Pods */,
+				8507FF75066B000D69D577F4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,6 +139,23 @@
 			path = JHLDManagerUITests;
 			sourceTree = "<group>";
 		};
+		8507FF75066B000D69D577F4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0AB4C65FA0624990F3420C15 /* libPods-JHLDManager.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C041ABA7028A567D1D546E08 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A2A1CA3F4027D7F95F2F75C3 /* Pods-JHLDManager.debug.xcconfig */,
+				6245EA9EFF2B9958E1CA0706 /* Pods-JHLDManager.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -139,9 +163,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 008469691F998419002C99C6 /* Build configuration list for PBXNativeTarget "JHLDManager" */;
 			buildPhases = (
+				6E06FD3043F9D95991289BCE /* [CP] Check Pods Manifest.lock */,
 				008469391F998419002C99C6 /* Sources */,
 				0084693A1F998419002C99C6 /* Frameworks */,
 				0084693B1F998419002C99C6 /* Resources */,
+				062CDCF1043D8B1C58F8EA15 /* [CP] Embed Pods Frameworks */,
+				97D3744B4BB0574FC770CAA3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -259,6 +286,57 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		062CDCF1043D8B1C58F8EA15 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JHLDManager/Pods-JHLDManager-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6E06FD3043F9D95991289BCE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-JHLDManager-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		97D3744B4BB0574FC770CAA3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JHLDManager/Pods-JHLDManager-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		008469391F998419002C99C6 /* Sources */ = {
@@ -428,11 +506,13 @@
 		};
 		0084696A1F998419002C99C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2A1CA3F4027D7F95F2F75C3 /* Pods-JHLDManager.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NW29WXZ727;
 				INFOPLIST_FILE = JHLDManager/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = booway.com.JHLDManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -442,11 +522,13 @@
 		};
 		0084696B1F998419002C99C6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6245EA9EFF2B9958E1CA0706 /* Pods-JHLDManager.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NW29WXZ727;
 				INFOPLIST_FILE = JHLDManager/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = booway.com.JHLDManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
