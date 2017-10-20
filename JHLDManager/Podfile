@@ -1,5 +1,13 @@
 
 platform :ios, '7.0'
 target 'JHLDManager' do
-pod 'AFNetworking', '~> 3.1.0'
+pod 'AFNetworking'
+pod 'Masonry'
+pod 'MJExtension'
+pod 'MBProgressHUD'
+pod 'MJRefresh'
+pod 'IQKeyboardManager'
+pod 'SDWebImage'
+pod 'SDCycleScrollView'
+pod 'YBPopupMenu'
 end

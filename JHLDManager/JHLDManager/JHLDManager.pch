@@ -6,6 +6,18 @@
 //  Copyright © 2017年 booway.com. All rights reserved.
 //
 
+#ifdef __OBJC__
+
+#import "Header.h"
+#import "Common.h"
+#endif
+
+#ifndef __OPTIMIZE__
+#define NSLog(...) NSLog(__VA_ARGS__)
+#else
+#define NSLog(...) {}
+#endif
+
 #ifndef JHLDManager_pch
 #define JHLDManager_pch
 
