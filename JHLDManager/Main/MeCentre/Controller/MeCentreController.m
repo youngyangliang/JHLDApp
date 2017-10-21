@@ -23,9 +23,8 @@
 }
 
 -(void)setUpUI{
-    BaseTableView *tableView = [[BaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    BaseTableView *tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT-TabBar_HEIGHT-NavgBar_HEIGHT) style:UITableViewStylePlain];
     self.tableView = tableView;
-    tableView.frame = self.view.bounds;
     tableView.dataSource = self;
     tableView.delegate  = self;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

@@ -18,22 +18,11 @@
     [super viewDidLoad];
     self.view.backgroundColor = backgroudColor;
     if (@available(iOS 11.0, *)) {
-
+        //        self.scrollview.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }else{
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
-//    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [button setImage:[UIImage imageNamed:@"nav_ico_left"] forState:UIControlStateNormal];
-//    [button setImage:[UIImage imageNamed:@"nav_ico_left"] forState:UIControlStateHighlighted];
-//    button.frame = CGRectMake(0, 0, 44, 44);
-//    [button addTarget:self action:@selector(backButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-//    self.navigationController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
 }
-
-//-(void)backButtonClick:(UIButton *)button{
-//    [self.navigationController popViewControllerAnimated:YES];
-//
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

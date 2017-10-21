@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "RegisterViewController.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 @property (nonatomic, weak) UITextField *userNameField;
@@ -53,10 +54,11 @@
         make.left.equalTo(userNameImg.mas_right).offset(10);
         make.right.equalTo(userNameView).offset(-10);
     }];
-    userNameField.placeholder = @"账号";
+    userNameField.placeholder = @"请输入手机号码";
     [userNameField setValue:[UIFont boldSystemFontOfSize:20] forKeyPath:@"_placeholderLabel.font"];
     userNameField.delegate = self;
     self.userNameField = userNameField;
+    userNameField.keyboardType = UIKeyboardTypeNumberPad;
     
     UIView *passwordView = [[UIView alloc]init];
     [scrollView addSubview:passwordView];
@@ -81,7 +83,7 @@
         make.left.equalTo(passwordImg.mas_right).offset(10);
         make.right.equalTo(passwordView).offset(-10);
     }];
-    passwordField.placeholder = @"密码";
+    passwordField.placeholder = @"请输入密码";
     passwordField.secureTextEntry = YES;
     [passwordField setValue:[UIFont boldSystemFontOfSize:18] forKeyPath:@"_placeholderLabel.font"];
     passwordField.delegate = self;
@@ -116,7 +118,7 @@
         make.top.equalTo(loginBtn.mas_bottom).offset(10);
         make.right.equalTo(loginBtn).offset(-25);
     }];
-    [registerBtn setTitle:@"注册" forState:UIControlStateNormal];
+    [registerBtn setTitle:@"用户注册" forState:UIControlStateNormal];
     [registerBtn setTitleColor:RGB(60, 150, 215) forState:UIControlStateNormal];
     [registerBtn addTarget:self action:@selector(registerBtnClick) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -150,8 +152,8 @@
 }
 
 -(BOOL)verifyUserNameField{
-    NSString * regex = @"^[A-Za-z0-9]{6,18}$";
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    NSString *phoneNoRegex = @"^1(3[0-9]|4[57]|5[0-35-9]|8[0-9]|7[0678])\\d{8}$";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneNoRegex];
     return [pred evaluateWithObject:self.userNameField.text];
 }
 
@@ -168,8 +170,8 @@
 }
 
 -(void)registerBtnClick{
-//    RegisterViewController *registerVC = [[RegisterViewController alloc]init];
-//    [self.navigationController pushViewController:registerVC animated:YES];
+    RegisterViewController *registerVC = [[RegisterViewController alloc]init];
+    [self.navigationController pushViewController:registerVC animated:YES];
 }
 
 
