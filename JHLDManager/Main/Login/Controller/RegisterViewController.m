@@ -15,11 +15,13 @@
 
 @interface RegisterViewController ()<UITextFieldDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (nonatomic, strong) NSArray *placeHoldArray;
-@property (nonatomic, weak) UITextField *userNameField;
+@property (nonatomic, weak) UITextField *telField;
+@property (nonatomic, weak) UITextField *codeField;
 @property (nonatomic, weak) UITextField *passwordField;
-@property (nonatomic, weak) UITextField *emailField;
-@property (nonatomic, weak) UITextField *phoneNumberField;
+@property (nonatomic, weak) UITextField *secondPasswordField;
+@property (nonatomic, weak) UIButton *codeBtn;
 @property (nonatomic, weak) UIButton *headBtn;
+@property (nonatomic, assign) int count;
 
 @end
 
@@ -31,7 +33,7 @@
     [self setUpUI];
 }
 -(void)setUpUI{
-    BaseScrollView *scrollView = [[BaseScrollView alloc]initWithFrame:self.view.bounds];
+    BaseScrollView *scrollView = [[BaseScrollView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT-TabBar_HEIGHT-NavgBar_HEIGHT)];
     [self.view addSubview:scrollView];
     scrollView.backgroundColor = backgroudColor;
     UIButton *headBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -57,11 +59,19 @@
         }];
         bgView.backgroundColor = [UIColor whiteColor];
         
+        UIImageView *img = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkout_password"]];
+        [bgView addSubview:img];
+        [img mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(bgView);
+            make.left.equalTo(bgView).offset(10);
+            make.width.height.mas_equalTo(20);
+        }];
+        
         UITextField *textField = [[UITextField alloc]init];
         [bgView addSubview:textField];
         [textField mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.bottom.equalTo(bgView);
-            make.left.equalTo(bgView).offset(10);
+            make.left.equalTo(img.mas_right).offset(10);
             make.right.equalTo(bgView).offset(-10);
         }];
         textField.placeholder = self.placeHoldArray[i];
@@ -69,19 +79,40 @@
         textField.delegate = self;
         switch (i) {
             case 0:
-                self.userNameField = textField;
+                self.telField = textField;
+                textField.keyboardType = UIKeyboardTypePhonePad;
                 break;
             case 1:
-                self.passwordField = textField;
-                textField.secureTextEntry = YES;
+            {
+                self.codeField = textField;
+                UIButton *codeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+                [bgView addSubview:codeBtn];
+                [codeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.right.equalTo(bgView.mas_right).offset(-10);
+                    make.centerY.equalTo(bgView);
+                    make.width.mas_equalTo(100);
+                    make.height.mas_equalTo(40);
+                }];
+                codeBtn.backgroundColor = baseColor;
+                [codeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+                codeBtn.titleLabel.font = FONT(14);
+                [codeBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                [codeBtn rounded:5];
+                [textField mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    make.top.bottom.equalTo(bgView);
+                    make.left.equalTo(img.mas_right).offset(10);
+                    make.right.equalTo(codeBtn.mas_left).offset(-5);
+                }];
+                [codeBtn addTarget:self action:@selector(codeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+                self.codeBtn = codeBtn;
+            }
                 break;
             case 2:
-                self.emailField = textField;
+                self.passwordField = textField;
                 break;
             case 3:
-                self.phoneNumberField = textField;
+                self.secondPasswordField = textField;
                 break;
-                
             default:
                 break;
         }
@@ -90,12 +121,12 @@
     UIButton *registBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [scrollView addSubview:registBtn];
     [registBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.phoneNumberField.mas_bottom).offset(20);
-        make.left.equalTo(self.phoneNumberField).offset(-10);
-        make.right.equalTo(self.phoneNumberField).offset(10);
+        make.top.equalTo(self.secondPasswordField.mas_bottom).offset(20);
+        make.left.equalTo(self.view).offset(25);
+        make.right.equalTo(self.view).offset(-25);
         make.height.mas_equalTo(50);
     }];
-    [registBtn setBackgroundColor:RGB(60, 150, 215) forState:UIControlStateNormal];
+    [registBtn setBackgroundColor:baseColor forState:UIControlStateNormal];
     [registBtn setTitle:@"注册" forState:UIControlStateNormal];
     [registBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [registBtn rounded:5];
@@ -103,6 +134,46 @@
     
     [self.view layoutIfNeeded];
     scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(registBtn.frame));
+}
+
+-(void)codeBtnClick:(UIButton *)codeBtn{
+    if ([Helper isPhoneNumber:self.telField.text]) {
+        codeBtn.userInteractionEnabled = NO;
+        [self statrCount];
+        [self getVerifyCode];
+    }else{
+        [ProgressHUD showError:@"请输入正确格式的电话号码"];
+    }
+}
+
+#pragma mark - 定时器
+-(void)statrCount{
+    self.count = 60;
+    NSTimer *timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(timerFire:) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+    [timer fire];
+}
+-(void)timerFire:(NSTimer *)timer{
+    
+    [self.codeBtn setTitle:[NSString stringWithFormat:@"%dS后重新获取",self.count] forState:UIControlStateNormal];
+    self.count--;
+    if(self.count == 0){
+        [timer invalidate];
+        [self.codeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+        self.codeBtn.userInteractionEnabled = YES;
+    }
+}
+
+-(void)getVerifyCode{
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    [param setValue:self.telField.text forKey:@"userLogin"];
+    [RequestData POST:@"obtainPin" parameters:param response:^(id responseObject, BOOL responseOK, NSString *msg) {
+        if (responseOK) {
+            
+        }else{
+            [ProgressHUD showError:msg];
+        }
+    }];
 }
 
 -(void)headBtnClick{
@@ -296,35 +367,17 @@
     return YES;
 }
 
--(BOOL)verifyUserNameField{
-    NSString * regex = @"^[A-Za-z0-9]{6,18}$";
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-    return [pred evaluateWithObject:self.userNameField.text];
-}
+//-(BOOL)verifyUserNameField{
+//    NSString * regex = @"^[A-Za-z0-9]{6,18}$";
+//    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+//    return [pred evaluateWithObject:self.telField.text];
+//}
 
--(BOOL)verifyPasswordField{
-    NSString * regex = @"^[A-Za-z0-9]{6,18}$";
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-    return [pred evaluateWithObject:self.passwordField.text];
-}
 
-//邮箱
-- (BOOL)isEmailAddress{
-    NSString *emailRegex = @"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
-    return [pred evaluateWithObject:self.emailField.text];
-}
-
-//电话
-- (BOOL)isPhoneNo{
-    NSString *phoneNoRegex = @"^1(3[0-9]|4[57]|5[0-35-9]|8[0-9]|7[0678])\\d{8}$";
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneNoRegex];
-    return [pred evaluateWithObject:self.phoneNumberField.text];
-}
 
 -(NSArray *)placeHoldArray{
     if (!_placeHoldArray) {
-        _placeHoldArray = [NSArray arrayWithObjects:@"账号（6~18个英文数字字符）",@"密码（6~18个字符或数字）",@"邮箱（用于找回密码）",@"电话（选填，方便我们与您联系）", nil];
+        _placeHoldArray = [NSArray arrayWithObjects:@"请输入手机号",@"请输入验证码",@"请输入密码",@"请再次输入密码", nil];
     }
     return _placeHoldArray;
 }

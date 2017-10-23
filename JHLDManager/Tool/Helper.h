@@ -27,4 +27,7 @@
 + (UIColor *)randomColor;
 
 + (NSString *)hanleNums:(NSString *)numbers;
+
+//验证是否为手机号
++(BOOL) isPhoneNumber:(NSString *)phoneNumber;
 @end

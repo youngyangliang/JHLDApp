@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
+#import "ForgetPasswordViewController.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 @property (nonatomic, weak) UITextField *userNameField;
@@ -24,15 +25,33 @@
 
 -(void)setUpUI{
     
-    BaseScrollView *scrollView = [[BaseScrollView alloc]initWithFrame:self.view.bounds];
+    BaseScrollView *scrollView = [[BaseScrollView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT-TabBar_HEIGHT-NavgBar_HEIGHT)];
     [self.view addSubview:scrollView];
     scrollView.backgroundColor = backgroudColor;
+    
+    UIView *logoView = [[UIView alloc]init];
+    [scrollView addSubview:logoView];
+    [logoView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(scrollView);
+        make.left.right.equalTo(self.view);
+        make.height.mas_equalTo(150);
+    }];
+    logoView.backgroundColor = baseColor;
+    
+//    UIImageView *logoImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Lo"]];
+//    [scrollView addSubview:logoImg];
+//    [logoImg mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(scrollView);
+//        make.left.right.equalTo(self.view);
+//        make.height.mas_equalTo(150);
+//    }];
+    
     
     
     UIView *userNameView = [[UIView alloc]init];
     [scrollView addSubview:userNameView];
     [userNameView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(20);
+        make.top.equalTo(logoView.mas_bottom).offset(20);
         make.left.equalTo(self.view).offset(25);
         make.right.equalTo(self.view).offset(-25);
         make.height.mas_equalTo(50);
@@ -110,7 +129,7 @@
     }];
     [forgetBtn setTitle:@"忘记密码" forState:UIControlStateNormal];
     [forgetBtn setTitleColor:RGB(60, 150, 215) forState:UIControlStateNormal];
-    [forgetBtn addTarget:self action:@selector(forgetBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [forgetBtn addTarget:self action:@selector(forgetPasswordBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [scrollView addSubview:registerBtn];
@@ -174,6 +193,10 @@
     [self.navigationController pushViewController:registerVC animated:YES];
 }
 
+-(void)forgetPasswordBtnClick{
+    ForgetPasswordViewController *forgetPasswordVC = [[ForgetPasswordViewController alloc]init];
+    [self.navigationController pushViewController:forgetPasswordVC animated:YES];
+}
 
 
 @end

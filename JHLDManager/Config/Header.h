@@ -14,7 +14,8 @@
 #import "BaseScrollView.h"
 #import "BaseTableView.h"
 #import "Helper.h"
-
+#import "RequestData.h"
+#import "ProgressHUD.h"
 
 
 #import <Masonry/Masonry.h>

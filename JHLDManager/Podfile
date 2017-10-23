@@ -10,4 +10,6 @@ pod 'SDWebImage'
 pod 'SDCycleScrollView'
 pod 'YBPopupMenu'
 pod 'IQKeyboardManager'
+pod 'ProgressHUD'
+
 end

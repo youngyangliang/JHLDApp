@@ -21,9 +21,11 @@
 #define RGB(r,g,b)               RGBA(r,g,b,1)
 #define RGBC(c)               RGBA(c,c,c,1)
 
-#define baseColor RGB(69, 179, 196)
-#define backgroudColor RGB(240, 240, 240)
+#define baseColor RGB(0, 200, 200)
+#define backgroudColor RGB(250, 250, 250)
 //字体
 #define FONT(s) [UIFont systemFontOfSize:s]
+
+#define BASE_URL @"http://192.168.19.121:8080/jhldxm/jhldxm_server/service/AccountService/"
 
 #endif /* Common_h */
