@@ -14,6 +14,7 @@
     if (self = [super initWithFrame:frame]) {
         if (@available(iOS 11.0, *)) {
             self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+            self.backgroundColor = [UIColor whiteColor];
         }
     }
     return self;

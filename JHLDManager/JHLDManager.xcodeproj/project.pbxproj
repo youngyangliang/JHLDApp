@@ -18,6 +18,7 @@
 		0084695A1F998419002C99C6 /* JHLDManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 008469591F998419002C99C6 /* JHLDManagerTests.m */; };
 		008469651F998419002C99C6 /* JHLDManagerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 008469641F998419002C99C6 /* JHLDManagerUITests.m */; };
 		CEBC7716C9FD72488D7AC1F0 /* libPods-JHLDManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB4C65FA0624990F3420C15 /* libPods-JHLDManager.a */; };
+		E11FF1E71F9F43EA00C48424 /* ChangeNameController.m in Sources */ = {isa = PBXBuildFile; fileRef = E11FF1E61F9F43EA00C48424 /* ChangeNameController.m */; };
 		E12302591F999A5900979FAC /* BaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E12302581F999A5900979FAC /* BaseTabBarController.m */; };
 		E123027A1F999FF700979FAC /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E12302791F999FF700979FAC /* BaseViewController.m */; };
 		E123027D1F99A08F00979FAC /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E123027C1F99A08F00979FAC /* HomeViewController.m */; };
@@ -29,6 +30,8 @@
 		E12302941F9A3EA400979FAC /* BaseScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E12302931F9A3EA400979FAC /* BaseScrollView.m */; };
 		E12302971F9A493600979FAC /* BaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E12302961F9A493600979FAC /* BaseTableView.m */; };
 		E123029A1F9A539100979FAC /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E12302991F9A539100979FAC /* RegisterViewController.m */; };
+		E129828C1F9ECE1600F0DAFC /* YLTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = E129828B1F9ECE1600F0DAFC /* YLTextField.m */; };
+		E129828F1F9F0B3F00F0DAFC /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E129828E1F9F0B3F00F0DAFC /* UserInfoModel.m */; };
 		E1476EA71F9AEE5000324B1A /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1476EA61F9AEE5000324B1A /* HomeCell.m */; };
 		E1476EAB1F9AF00E00324B1A /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = E1476EAA1F9AF00E00324B1A /* Helper.m */; };
 		E1F492561F9D719100A2D1E6 /* NetworkInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F492551F9D719100A2D1E6 /* NetworkInstance.m */; };
@@ -81,6 +84,8 @@
 		0AB4C65FA0624990F3420C15 /* libPods-JHLDManager.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JHLDManager.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6245EA9EFF2B9958E1CA0706 /* Pods-JHLDManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JHLDManager.release.xcconfig"; path = "Pods/Target Support Files/Pods-JHLDManager/Pods-JHLDManager.release.xcconfig"; sourceTree = "<group>"; };
 		A2A1CA3F4027D7F95F2F75C3 /* Pods-JHLDManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JHLDManager.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JHLDManager/Pods-JHLDManager.debug.xcconfig"; sourceTree = "<group>"; };
+		E11FF1E51F9F43EA00C48424 /* ChangeNameController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeNameController.h; sourceTree = "<group>"; };
+		E11FF1E61F9F43EA00C48424 /* ChangeNameController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeNameController.m; sourceTree = "<group>"; };
 		E12302561F99989E00979FAC /* JHLDManager.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JHLDManager.pch; sourceTree = "<group>"; };
 		E12302571F999A5900979FAC /* BaseTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTabBarController.h; sourceTree = "<group>"; };
 		E12302581F999A5900979FAC /* BaseTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTabBarController.m; sourceTree = "<group>"; };
@@ -104,6 +109,10 @@
 		E12302961F9A493600979FAC /* BaseTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableView.m; sourceTree = "<group>"; };
 		E12302981F9A539100979FAC /* RegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		E12302991F9A539100979FAC /* RegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		E129828A1F9ECE1600F0DAFC /* YLTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YLTextField.h; sourceTree = "<group>"; };
+		E129828B1F9ECE1600F0DAFC /* YLTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YLTextField.m; sourceTree = "<group>"; };
+		E129828D1F9F0B3F00F0DAFC /* UserInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
+		E129828E1F9F0B3F00F0DAFC /* UserInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
 		E1476EA51F9AEE5000324B1A /* HomeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeCell.h; sourceTree = "<group>"; };
 		E1476EA61F9AEE5000324B1A /* HomeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeCell.m; sourceTree = "<group>"; };
 		E1476EA91F9AF00E00324B1A /* Helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
@@ -337,6 +346,10 @@
 			children = (
 				E123027E1F99A0C000979FAC /* MeCentreController.h */,
 				E123027F1F99A0C000979FAC /* MeCentreController.m */,
+				E1F4925E1F9DC50100A2D1E6 /* UserInfoViewController.h */,
+				E1F4925F1F9DC50100A2D1E6 /* UserInfoViewController.m */,
+				E11FF1E51F9F43EA00C48424 /* ChangeNameController.h */,
+				E11FF1E61F9F43EA00C48424 /* ChangeNameController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -426,8 +439,6 @@
 				E12302991F9A539100979FAC /* RegisterViewController.m */,
 				E1F4925B1F9DBC9700A2D1E6 /* ForgetPasswordViewController.h */,
 				E1F4925C1F9DBC9700A2D1E6 /* ForgetPasswordViewController.m */,
-				E1F4925E1F9DC50100A2D1E6 /* UserInfoViewController.h */,
-				E1F4925F1F9DC50100A2D1E6 /* UserInfoViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -435,6 +446,8 @@
 		E123028D1F99ECB300979FAC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E129828D1F9F0B3F00F0DAFC /* UserInfoModel.h */,
+				E129828E1F9F0B3F00F0DAFC /* UserInfoModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -451,6 +464,8 @@
 			children = (
 				E1476EA91F9AF00E00324B1A /* Helper.h */,
 				E1476EAA1F9AF00E00324B1A /* Helper.m */,
+				E129828A1F9ECE1600F0DAFC /* YLTextField.h */,
+				E129828B1F9ECE1600F0DAFC /* YLTextField.m */,
 				E1F492541F9D719100A2D1E6 /* NetworkInstance.h */,
 				E1F492551F9D719100A2D1E6 /* NetworkInstance.m */,
 				E1F492571F9D724E00A2D1E6 /* RequestData.h */,
@@ -651,6 +666,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E123027A1F999FF700979FAC /* BaseViewController.m in Sources */,
+				E129828F1F9F0B3F00F0DAFC /* UserInfoModel.m in Sources */,
 				E123029A1F9A539100979FAC /* RegisterViewController.m in Sources */,
 				E12302891F99A14400979FAC /* NavViewController.m in Sources */,
 				0044265A1F99C4AE000E9CB3 /* UIButton+FillColor.m in Sources */,
@@ -664,6 +680,7 @@
 				E12302971F9A493600979FAC /* BaseTableView.m in Sources */,
 				008469421F998419002C99C6 /* AppDelegate.m in Sources */,
 				E12302801F99A0C000979FAC /* MeCentreController.m in Sources */,
+				E129828C1F9ECE1600F0DAFC /* YLTextField.m in Sources */,
 				E1476EA71F9AEE5000324B1A /* HomeCell.m in Sources */,
 				E12302941F9A3EA400979FAC /* BaseScrollView.m in Sources */,
 				0044265B1F99C4AE000E9CB3 /* NSArray+Log.m in Sources */,
@@ -672,6 +689,7 @@
 				004426531F99C367000E9CB3 /* UIView+Category.m in Sources */,
 				E123027D1F99A08F00979FAC /* HomeViewController.m in Sources */,
 				E1F4925D1F9DBC9700A2D1E6 /* ForgetPasswordViewController.m in Sources */,
+				E11FF1E71F9F43EA00C48424 /* ChangeNameController.m in Sources */,
 				E1F492561F9D719100A2D1E6 /* NetworkInstance.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

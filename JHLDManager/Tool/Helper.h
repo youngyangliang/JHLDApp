@@ -30,4 +30,8 @@
 
 //验证是否为手机号
 +(BOOL) isPhoneNumber:(NSString *)phoneNumber;
+
++ (NSString *) md5:(NSString *) input;
+
++(void)updataUserDefultValue:(nullable id)value forKey:(NSString *)key;
 @end

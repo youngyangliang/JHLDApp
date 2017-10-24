@@ -32,7 +32,6 @@
     tableView.dataSource = self;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.tableHeaderView = [self tableViewHeadView];
-    
     tableView.tableFooterView = [self tableViewFootView];
     
 }

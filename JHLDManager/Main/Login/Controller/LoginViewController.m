@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
 #import "ForgetPasswordViewController.h"
+#import "UserInfoModel.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 @property (nonatomic, weak) UITextField *userNameField;
@@ -25,168 +26,141 @@
 
 -(void)setUpUI{
     
-    BaseScrollView *scrollView = [[BaseScrollView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT-TabBar_HEIGHT-NavgBar_HEIGHT)];
-    [self.view addSubview:scrollView];
-    scrollView.backgroundColor = backgroudColor;
+    BaseScrollView *scrollView = [[BaseScrollView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT-NavgBar_HEIGHT)];
+    [self.view addSubview:scrollView];    
     
-    UIView *logoView = [[UIView alloc]init];
-    [scrollView addSubview:logoView];
-    [logoView mas_makeConstraints:^(MASConstraintMaker *make) {
+    UIImageView *logoImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bigLogo"]];
+    [scrollView addSubview:logoImg];
+    [logoImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(scrollView);
         make.left.right.equalTo(self.view);
         make.height.mas_equalTo(150);
     }];
-    logoView.backgroundColor = baseColor;
     
-//    UIImageView *logoImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Lo"]];
-//    [scrollView addSubview:logoImg];
-//    [logoImg mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(scrollView);
-//        make.left.right.equalTo(self.view);
-//        make.height.mas_equalTo(150);
-//    }];
-    
-    
-    
-    UIView *userNameView = [[UIView alloc]init];
-    [scrollView addSubview:userNameView];
-    [userNameView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(logoView.mas_bottom).offset(20);
-        make.left.equalTo(self.view).offset(25);
-        make.right.equalTo(self.view).offset(-25);
+    YLTextField *userNameField = [[YLTextField alloc]init];
+    [scrollView addSubview:userNameField];
+    [userNameField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(logoImg.mas_bottom).offset(50);
+        make.left.equalTo(self.view).offset(40);
+        make.right.equalTo(self.view).offset(-40);
         make.height.mas_equalTo(50);
     }];
-    userNameView.backgroundColor = [UIColor whiteColor];
-    
-    UIImageView *userNameImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkout_password"]];
-    [userNameView addSubview:userNameImg];
-    [userNameImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(userNameView);
-        make.left.equalTo(userNameView).offset(10);
-        make.width.height.mas_equalTo(20);
-    }];
-    
-    UITextField *userNameField = [[UITextField alloc]init];
-    [userNameView addSubview:userNameField];
-    [userNameField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.equalTo(userNameView);
-        make.left.equalTo(userNameImg.mas_right).offset(10);
-        make.right.equalTo(userNameView).offset(-10);
-    }];
+    userNameField.leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkout_password"]];
+    userNameField.leftViewMode = UITextFieldViewModeAlways;
+    [Helper addBordToView:userNameField andColor:baseColor andRadius:25 BorderWith:1];
     userNameField.placeholder = @"请输入手机号码";
-    [userNameField setValue:[UIFont boldSystemFontOfSize:20] forKeyPath:@"_placeholderLabel.font"];
+    [userNameField setValue:[UIFont systemFontOfSize:20] forKeyPath:@"_placeholderLabel.font"];
+    [userNameField setValue:baseColor forKeyPath:@"_placeholderLabel.textColor"];
     userNameField.delegate = self;
     self.userNameField = userNameField;
     userNameField.keyboardType = UIKeyboardTypeNumberPad;
+    userNameField.clearButtonMode = UITextFieldViewModeWhileEditing;
     
-    UIView *passwordView = [[UIView alloc]init];
-    [scrollView addSubview:passwordView];
-    [passwordView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(userNameView.mas_bottom).offset(1);
-        make.left.right.height.equalTo(userNameView);
-    }];
-    passwordView.backgroundColor = [UIColor whiteColor];
-    
-    UIImageView *passwordImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkout_password"]];
-    [passwordView addSubview:passwordImg];
-    [passwordImg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(passwordView);
-        make.left.equalTo(passwordView).offset(10);
-        make.width.height.mas_equalTo(20);
-    }];
-    
-    UITextField *passwordField = [[UITextField alloc]init];
-    [passwordView addSubview:passwordField];
+    YLTextField *passwordField = [[YLTextField alloc]init];
+    [scrollView addSubview:passwordField];
     [passwordField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.equalTo(passwordView);
-        make.left.equalTo(passwordImg.mas_right).offset(10);
-        make.right.equalTo(passwordView).offset(-10);
+        make.top.equalTo(userNameField.mas_bottom).offset(20);
+        make.left.right.height.equalTo(userNameField);
     }];
+    passwordField.leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkout_password"]];
+    passwordField.leftViewMode = UITextFieldViewModeAlways;
+    [Helper addBordToView:passwordField andColor:baseColor andRadius:25 BorderWith:1];
     passwordField.placeholder = @"请输入密码";
-    passwordField.secureTextEntry = YES;
-    [passwordField setValue:[UIFont boldSystemFontOfSize:18] forKeyPath:@"_placeholderLabel.font"];
+    [passwordField setValue:[UIFont systemFontOfSize:20] forKeyPath:@"_placeholderLabel.font"];
+    [passwordField setValue:baseColor forKeyPath:@"_placeholderLabel.textColor"];
     passwordField.delegate = self;
     self.passwordField = passwordField;
+    passwordField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    passwordField.secureTextEntry = YES;
     
     UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [scrollView addSubview:loginBtn];
     [loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(passwordView.mas_bottom).offset(20);
-        make.left.right.equalTo(passwordView);
+        make.top.equalTo(passwordField.mas_bottom).offset(20);
+        make.left.right.equalTo(passwordField);
         make.height.mas_equalTo(50);
     }];
-    [loginBtn setBackgroundColor:RGB(60, 150, 215) forState:UIControlStateNormal];
-    [loginBtn setTitle:@"登录" forState:UIControlStateNormal];
+    [loginBtn setBackgroundColor:baseColor forState:UIControlStateNormal];
+    [loginBtn setTitle:@"立即登录" forState:UIControlStateNormal];
+    loginBtn.titleLabel.font = FONT(20);
     [loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [loginBtn rounded:5];
+    [loginBtn rounded:25];
     [loginBtn addTarget:self action:@selector(loginBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    
+
+
     UIButton *forgetBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [scrollView addSubview:forgetBtn];
     [forgetBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(loginBtn.mas_bottom).offset(10);
-        make.left.equalTo(loginBtn).offset(25);
+        make.top.equalTo(loginBtn.mas_bottom).offset(50);
+        make.right.equalTo(loginBtn.mas_centerX).offset(-15);
     }];
     [forgetBtn setTitle:@"忘记密码" forState:UIControlStateNormal];
-    [forgetBtn setTitleColor:RGB(60, 150, 215) forState:UIControlStateNormal];
+    [forgetBtn setTitleColor:baseColor forState:UIControlStateNormal];
     [forgetBtn addTarget:self action:@selector(forgetPasswordBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    
+
     UIButton *registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [scrollView addSubview:registerBtn];
     [registerBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(loginBtn.mas_bottom).offset(10);
-        make.right.equalTo(loginBtn).offset(-25);
+        make.centerY.equalTo(forgetBtn);
+        make.left.equalTo(loginBtn.mas_centerX).offset(15);
     }];
-    [registerBtn setTitle:@"用户注册" forState:UIControlStateNormal];
-    [registerBtn setTitleColor:RGB(60, 150, 215) forState:UIControlStateNormal];
+    [registerBtn setTitle:@"立即注册" forState:UIControlStateNormal];
+    [registerBtn setTitleColor:baseColor forState:UIControlStateNormal];
     [registerBtn addTarget:self action:@selector(registerBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIView *line = [[UIView alloc]init];
+    [scrollView addSubview:line];
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(loginBtn);
+        make.centerY.equalTo(forgetBtn);
+        make.height.mas_equalTo(20);
+        make.width.mas_equalTo(1);
+    }];
+    line.backgroundColor = baseColor;
+    
+    [self.view layoutIfNeeded];
+    scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(registerBtn.frame));
 }
 
--(void)textFieldDidEndEditing:(UITextField *)textField{
-    if (textField == self.userNameField) {
 
+- (void)textFieldDidChange:(UITextField *)textField
+{
+    if (textField == self.userNameField) {
+        if (textField.text.length > 11) {
+            textField.text = [textField.text substringToIndex:11];
+        }
     }
 }
 
 -(void)loginBtnClick{
     if ([self verify]) {
+        [ProgressHUD show:@"正在登录"];
         
+        NSMutableDictionary *param = [NSMutableDictionary dictionary];
+        [param setValue:self.userNameField.text forKey:@"userLogin"];
+        [param setValue:[Helper md5:self.passwordField.text] forKey:@"pwd"];
+        [RequestData POST:@"login" parameters:param response:^(id responseObject, BOOL responseOK, NSString *msg) {
+            if (responseOK) {
+                NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+                [userDef setObject:responseObject forKey:@"userInfo"];
+                [ProgressHUD showSuccess:msg];
+                [self.navigationController popViewControllerAnimated:YES];
+            }else{
+                [ProgressHUD showError:msg];
+            }
+        }];
     }
 }
 
 -(BOOL)verify{
-//    if ([Helper isBlankString:self.userNameField.text] || ![self verifyUserNameField]) {
-//        [MBProgressHUD showText:@"请输入规范的用户名"];
-//        return NO;
-//    }
-//    if ([Helper isBlankString:self.passwordField.text] || ![self verifyPasswordField]) {
-//        [MBProgressHUD showText:@"请输入规范的密码"];
-//        return NO;
-//    }
-//    if (![self.inputCodeField.text isEqualToString:self.codeLabel.text]) {
-//        [MBProgressHUD showText:@"验证码输入有误"];
-//        return NO;
-//    }
+    if (![Helper isPhoneNumber:self.userNameField.text]) {
+        [ProgressHUD showError:@"请输入正确的手机号码"];
+        return NO;
+    }
+
     return YES;
 }
 
--(BOOL)verifyUserNameField{
-    NSString *phoneNoRegex = @"^1(3[0-9]|4[57]|5[0-35-9]|8[0-9]|7[0678])\\d{8}$";
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneNoRegex];
-    return [pred evaluateWithObject:self.userNameField.text];
-}
-
--(BOOL)verifyPasswordField{
-    NSString * regex = @"^[A-Za-z0-9]{6,18}$";
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-    return [pred evaluateWithObject:self.passwordField.text];
-}
-
-
--(void)forgetBtnClick{
-//    ForgetPasswordViewController *forgetPasswordVC = [[ForgetPasswordViewController alloc]init];
-//    [self.navigationController pushViewController:forgetPasswordVC animated:YES];
-}
 
 -(void)registerBtnClick{
     RegisterViewController *registerVC = [[RegisterViewController alloc]init];

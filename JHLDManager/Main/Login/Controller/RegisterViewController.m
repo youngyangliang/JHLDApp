@@ -8,19 +8,13 @@
 
 #import "RegisterViewController.h"
 
-#import<AVFoundation/AVCaptureDevice.h>
-#import<AVFoundation/AVMediaFormat.h>
-#import<AssetsLibrary/AssetsLibrary.h>
-#import<CoreLocation/CoreLocation.h>
-
-@interface RegisterViewController ()<UITextFieldDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
-@property (nonatomic, strong) NSArray *placeHoldArray;
-@property (nonatomic, weak) UITextField *telField;
+@interface RegisterViewController ()<UITextFieldDelegate>
+@property (nonatomic, weak) UITextField *userNameField;
 @property (nonatomic, weak) UITextField *codeField;
 @property (nonatomic, weak) UITextField *passwordField;
 @property (nonatomic, weak) UITextField *secondPasswordField;
 @property (nonatomic, weak) UIButton *codeBtn;
-@property (nonatomic, weak) UIButton *headBtn;
+@property (nonatomic, copy) NSString *code;
 @property (nonatomic, assign) int count;
 
 @end
@@ -33,111 +27,121 @@
     [self setUpUI];
 }
 -(void)setUpUI{
-    BaseScrollView *scrollView = [[BaseScrollView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT-TabBar_HEIGHT-NavgBar_HEIGHT)];
+    BaseScrollView *scrollView = [[BaseScrollView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT-NavgBar_HEIGHT)];
     [self.view addSubview:scrollView];
-    scrollView.backgroundColor = backgroudColor;
-    UIButton *headBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [scrollView addSubview:headBtn];
-    [headBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(scrollView);
-        make.top.equalTo(scrollView).offset(40);
-        make.width.height.mas_equalTo(80);
+    
+    UIImageView *logoImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bigLogo"]];
+    [scrollView addSubview:logoImg];
+    [logoImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(scrollView);
+        make.left.right.equalTo(self.view);
+        make.height.mas_equalTo(150);
     }];
-    [headBtn setImage:[UIImage imageNamed:@"headIcon"] forState:UIControlStateNormal];
-    [headBtn rounded:40];
-    [headBtn addTarget:self action:@selector(headBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    self.headBtn = headBtn;
     
-    for (int i = 0; i<self.placeHoldArray.count; i++) {
-        UIView *bgView = [[UIView alloc]init];
-        [scrollView addSubview:bgView];
-        [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(headBtn.mas_bottom).offset(30+i*(51));
-            make.left.equalTo(self.view).offset(25);
-            make.right.equalTo(self.view).offset(-25);
-            make.height.mas_equalTo(50);
-        }];
-        bgView.backgroundColor = [UIColor whiteColor];
-        
-        UIImageView *img = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkout_password"]];
-        [bgView addSubview:img];
-        [img mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(bgView);
-            make.left.equalTo(bgView).offset(10);
-            make.width.height.mas_equalTo(20);
-        }];
-        
-        UITextField *textField = [[UITextField alloc]init];
-        [bgView addSubview:textField];
-        [textField mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.bottom.equalTo(bgView);
-            make.left.equalTo(img.mas_right).offset(10);
-            make.right.equalTo(bgView).offset(-10);
-        }];
-        textField.placeholder = self.placeHoldArray[i];
-        [textField setValue:[UIFont boldSystemFontOfSize:16] forKeyPath:@"_placeholderLabel.font"];
-        textField.delegate = self;
-        switch (i) {
-            case 0:
-                self.telField = textField;
-                textField.keyboardType = UIKeyboardTypePhonePad;
-                break;
-            case 1:
-            {
-                self.codeField = textField;
-                UIButton *codeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-                [bgView addSubview:codeBtn];
-                [codeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.right.equalTo(bgView.mas_right).offset(-10);
-                    make.centerY.equalTo(bgView);
-                    make.width.mas_equalTo(100);
-                    make.height.mas_equalTo(40);
-                }];
-                codeBtn.backgroundColor = baseColor;
-                [codeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
-                codeBtn.titleLabel.font = FONT(14);
-                [codeBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                [codeBtn rounded:5];
-                [textField mas_remakeConstraints:^(MASConstraintMaker *make) {
-                    make.top.bottom.equalTo(bgView);
-                    make.left.equalTo(img.mas_right).offset(10);
-                    make.right.equalTo(codeBtn.mas_left).offset(-5);
-                }];
-                [codeBtn addTarget:self action:@selector(codeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-                self.codeBtn = codeBtn;
-            }
-                break;
-            case 2:
-                self.passwordField = textField;
-                break;
-            case 3:
-                self.secondPasswordField = textField;
-                break;
-            default:
-                break;
-        }
-    }
-    
-    UIButton *registBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [scrollView addSubview:registBtn];
-    [registBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.secondPasswordField.mas_bottom).offset(20);
-        make.left.equalTo(self.view).offset(25);
-        make.right.equalTo(self.view).offset(-25);
+    YLTextField *userNameField = [[YLTextField alloc]init];
+    [scrollView addSubview:userNameField];
+    [userNameField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(logoImg.mas_bottom).offset(50);
+        make.left.equalTo(self.view).offset(40);
+        make.right.equalTo(self.view).offset(-40);
         make.height.mas_equalTo(50);
     }];
-    [registBtn setBackgroundColor:baseColor forState:UIControlStateNormal];
-    [registBtn setTitle:@"注册" forState:UIControlStateNormal];
-    [registBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [registBtn rounded:5];
-    [registBtn addTarget:self action:@selector(registBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    userNameField.leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkout_password"]];
+    userNameField.leftViewMode = UITextFieldViewModeAlways;
+    [Helper addBordToView:userNameField andColor:baseColor andRadius:25 BorderWith:1];
+    userNameField.placeholder = @"请输入手机号码";
+    [userNameField setValue:[UIFont systemFontOfSize:20] forKeyPath:@"_placeholderLabel.font"];
+    [userNameField setValue:baseColor forKeyPath:@"_placeholderLabel.textColor"];
+    userNameField.delegate = self;
+    self.userNameField = userNameField;
+    userNameField.keyboardType = UIKeyboardTypeNumberPad;
+    userNameField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    [userNameField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     
+    YLTextField *codeField = [[YLTextField alloc]init];
+    [scrollView addSubview:codeField];
+    [codeField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(userNameField.mas_bottom).offset(20);
+        make.left.right.height.equalTo(userNameField);
+    }];
+    codeField.leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkout_password"]];
+    codeField.leftViewMode = UITextFieldViewModeAlways;
+    [Helper addBordToView:codeField andColor:baseColor andRadius:25 BorderWith:1];
+    codeField.placeholder = @"请输入验证码";
+    [codeField setValue:[UIFont systemFontOfSize:20] forKeyPath:@"_placeholderLabel.font"];
+    [codeField setValue:baseColor forKeyPath:@"_placeholderLabel.textColor"];
+    codeField.delegate = self;
+    self.codeField = codeField;
+    codeField.keyboardType = UIKeyboardTypeNumberPad;
+    [codeField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    
+    UIButton *codeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [codeField addSubview:codeBtn];
+    [codeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(codeField.mas_right).offset(-5);
+        make.centerY.equalTo(codeField);
+        make.width.mas_equalTo(100);
+        make.height.mas_equalTo(40);
+    }];
+    codeBtn.backgroundColor = baseColor;
+    [codeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+    codeBtn.titleLabel.font = FONT(14);
+    [codeBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [codeBtn rounded:20];
+    [codeBtn addTarget:self action:@selector(codeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.codeBtn = codeBtn;
+    
+    YLTextField *passwordField = [[YLTextField alloc]init];
+    [scrollView addSubview:passwordField];
+    [passwordField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(codeField.mas_bottom).offset(20);
+        make.left.right.height.equalTo(userNameField);
+    }];
+    passwordField.leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkout_password"]];
+    passwordField.leftViewMode = UITextFieldViewModeAlways;
+    [Helper addBordToView:passwordField andColor:baseColor andRadius:25 BorderWith:1];
+    passwordField.placeholder = @"请输入密码";
+    [passwordField setValue:[UIFont systemFontOfSize:20] forKeyPath:@"_placeholderLabel.font"];
+    [passwordField setValue:baseColor forKeyPath:@"_placeholderLabel.textColor"];
+    passwordField.delegate = self;
+    self.passwordField = passwordField;
+    passwordField.secureTextEntry = YES;
+    
+    YLTextField *secondPasswordField = [[YLTextField alloc]init];
+    [scrollView addSubview:secondPasswordField];
+    [secondPasswordField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(passwordField.mas_bottom).offset(20);
+        make.left.right.height.equalTo(userNameField);
+    }];
+    secondPasswordField.leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkout_password"]];
+    secondPasswordField.leftViewMode = UITextFieldViewModeAlways;
+    [Helper addBordToView:secondPasswordField andColor:baseColor andRadius:25 BorderWith:1];
+    secondPasswordField.placeholder = @"请再次输入密码";
+    [secondPasswordField setValue:[UIFont systemFontOfSize:20] forKeyPath:@"_placeholderLabel.font"];
+    [secondPasswordField setValue:baseColor forKeyPath:@"_placeholderLabel.textColor"];
+    secondPasswordField.delegate = self;
+    self.secondPasswordField = secondPasswordField;
+    secondPasswordField.secureTextEntry = YES;
+
+    UIButton *registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [scrollView addSubview:registerBtn];
+    [registerBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(secondPasswordField.mas_bottom).offset(20);
+        make.left.right.height.equalTo(userNameField);
+    }];
+    [registerBtn setBackgroundColor:baseColor forState:UIControlStateNormal];
+    [registerBtn setTitle:@"注册" forState:UIControlStateNormal];
+    registerBtn.titleLabel.font = FONT(20);
+    [registerBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [registerBtn rounded:25];
+    [registerBtn addTarget:self action:@selector(registerBtnClick) forControlEvents:UIControlEventTouchUpInside];
+   
     [self.view layoutIfNeeded];
-    scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(registBtn.frame));
+    scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(registerBtn.frame));
 }
 
 -(void)codeBtnClick:(UIButton *)codeBtn{
-    if ([Helper isPhoneNumber:self.telField.text]) {
+    if ([Helper isPhoneNumber:self.userNameField.text]) {
         codeBtn.userInteractionEnabled = NO;
         [self statrCount];
         [self getVerifyCode];
@@ -166,204 +170,67 @@
 
 -(void)getVerifyCode{
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
-    [param setValue:self.telField.text forKey:@"userLogin"];
+    [param setValue:self.userNameField.text forKey:@"userLogin"];
     [RequestData POST:@"obtainPin" parameters:param response:^(id responseObject, BOOL responseOK, NSString *msg) {
         if (responseOK) {
-            
+            NSLog(@"%@",responseObject);
+            self.code = [responseObject objectForKey:@"pin"];
         }else{
             [ProgressHUD showError:msg];
         }
     }];
 }
 
--(void)headBtnClick{
-    
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请选择" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-        AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-        if (authStatus ==AVAuthorizationStatusRestricted ||//此应用程序没有被授权访问的照片数据。可能是家长控制权限
-            authStatus ==AVAuthorizationStatusDenied)  //用户已经明确否认了这一照片数据的应用程序访问
-        {
-            // 无权限 引导去开启
-            NSDictionary *dict = [NSDictionary dictionary];
-            NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-            if ([[UIApplication sharedApplication] canOpenURL:url]) {
-                if (@available(iOS 10.0, *)) {
-                    [[UIApplication sharedApplication] openURL:url options:dict completionHandler:nil];
-                } else {
-                    // Fallback on earlier versions
-                }
-                return;
-            }
-        }
-        UIImagePickerController * picker = [[UIImagePickerController alloc]init];
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            picker.delegate=self;
-            [self presentViewController:picker animated:YES completion:nil];
-            
-        }
-        
-        
-    }]];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"从手机相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-        //相册权限
-        ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
-        if (author ==kCLAuthorizationStatusRestricted || author ==kCLAuthorizationStatusDenied){
-            //无权限 引导去开启
-            NSDictionary *dict = [NSDictionary dictionary];
-            NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-            if ([[UIApplication sharedApplication] canOpenURL:url]) {
-                [[UIApplication sharedApplication] openURL:url options:dict completionHandler:nil];
-                return;
-            }
-        }
-        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-        imagePicker.delegate = self;
-        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        imagePicker.allowsEditing = YES;
-        [self presentViewController:imagePicker animated:YES completion:nil];
-    }]];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-    }]];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
-}
 
--(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
-    [self dismissViewControllerAnimated:YES completion:nil];
-    UIImage *img = [info objectForKey:UIImagePickerControllerOriginalImage];
-    [self.headBtn setImage:img forState:UIControlStateNormal];
-    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    [user setObject:UIImagePNGRepresentation(img) forKey:@"headPhoto"];
-    //不是从相册里拿的照片,就保存到相册里
-    if (![info objectForKey:@"UIImagePickerControllerReferenceURL"]) {
-        UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil);
+- (void)textFieldDidChange:(UITextField *)textField
+{
+    if (textField == self.userNameField) {
+        if (textField.text.length > 11) {
+            textField.text = [textField.text substringToIndex:11];
+        }
+    }
+    if (textField == self.codeField) {
+        if (textField.text.length > 6) {
+            textField.text = [textField.text substringToIndex:6];
+        }
     }
 }
 
 
--(void)registBtnClick{
+-(void)registerBtnClick{
     if ([self verify]) {
-//        //先验证用户名是否重复
-//        NSMutableDictionary *param = [NSMutableDictionary dictionary];
-//        [param setValue:self.userNameField.text forKey:@"userName"];
-//        [RequestData GET:@"aqiJudgeUserNameIsRepeat" parameters:param response:^(id responseObject, BOOL responseOK) {
-//            if (responseOK) {
-//                if ([responseObject isEqualToString:@"false"]) {//用户名存在
-//                    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"该用户名已经存在！" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-//                    
-//                    [alertController addAction:[UIAlertAction actionWithTitle:@"我知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//                        
-//                    }]];
-//                    [self presentViewController:alertController animated:YES completion:nil];
-//                }else{
-//                    
-//                    [self registUser];
-//                }
-//            }
-//        }];
+        NSMutableDictionary *param = [NSMutableDictionary dictionary];
+        [param setValue:self.userNameField.text forKey:@"userLogin"];
+        [param setValue:self.codeField.text forKey:@"pin"];
+        [param setValue:[Helper md5:self.passwordField.text] forKey:@"pwd"];
+        [param setValue:self.userNameField.text forKey:@"name"];
+        
+        [RequestData POST:@"register" parameters:param response:^(id responseObject, BOOL responseOK, NSString *msg) {
+            if (responseOK) {
+                [ProgressHUD showSuccess:@"注册成功"];
+            }else{
+                [ProgressHUD showError:msg];
+            }
+        }];
     }
 }
 
--(void)uploadHeadImage{
-//    NSData *headData = [[NSUserDefaults standardUserDefaults] objectForKey:@"headPhoto"];
-//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-//    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-//    //    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-//    NSMutableDictionary *param = [NSMutableDictionary dictionary];
-//    [param setValue:@"headImage.png" forKey:@"Filedata"];
-//    [manager POST:@"http://60.12.237.34:9909/mobile/mobile/upload.do" parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-//
-//        //上传文件参数
-//        [formData appendPartWithFileData:headData name:@"headImage" fileName:@"headImage.png" mimeType:@"image/jpeg"];
-//
-//    } progress:^(NSProgress * _Nonnull uploadProgress) {
-//
-//        //打印上传进度
-//        CGFloat progress = 100.0 * uploadProgress.completedUnitCount / uploadProgress.totalUnitCount;
-//        NSLog(@"%.2lf%%", progress);
-//
-//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//
-//        //请求成功
-//        NSLog(@"请求成功：%@",responseObject);
-//        [MBProgressHUD showSuccess:@"注册成功！"];
-//        [self.navigationController popToRootViewControllerAnimated:YES];
-//
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//
-//        //请求失败
-//        NSLog(@"请求失败：%@",error);
-//
-//    }];
-}
-
--(void)registUser{
-//    NSMutableDictionary *param = [NSMutableDictionary dictionary];
-//    [param setValue:self.userNameField.text forKey:@"userName"];
-//    [param setValue:self.passwordField.text forKey:@"password"];
-//    [param setValue:self.emailField.text forKey:@"email"];
-//    [param setValue:self.userNameField.text forKey:@"nickName"];
-//    [param setValue:@"" forKey:@"iconId"];
-//    [param setValue:self.phoneNumberField.text forKey:@"phone"];
-//    [RequestData GET:@"aqiRegisterUser" parameters:param response:^(id responseObject, BOOL responseOK) {
-//        if (responseOK) {
-//            RegisterModel *userModel = [RegisterModel mj_objectWithKeyValues:responseObject];
-//            //先请求code,再登录
-//            NSMutableDictionary *param = [NSMutableDictionary dictionary];
-//            [param setValue:self.userNameField.text forKey:@"username"];
-//            [RequestData GET:@"aqiGetIdCode" parameters:param response:^(id responseObject, BOOL responseOK) {
-//                if (responseOK) {
-//                    NSMutableDictionary *param = [NSMutableDictionary dictionary];
-//                    [param setValue:userModel.userName forKey:@"userName"];
-//                    [param setValue:self.passwordField.text forKey:@"password"];
-//                    [param setValue:@"0" forKey:@"phoneType"];
-//                    [param setValue:responseObject forKey:@"code"];
-//                    [RequestData GET:@"aqiUserLogin1" parameters:param response:^(id responseObject, BOOL responseOK) {
-//                        if (responseOK) {
-//                            NSLog(@"%@",responseObject);
-//
-//                            UserInfoModel *model = [UserInfoModel mj_objectWithKeyValues:responseObject];
-//                            NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
-//                            NSData *data = [NSKeyedArchiver archivedDataWithRootObject:model];
-//                            [userDef setObject:data forKey:@"userInfo"];
-//                            [[NSNotificationCenter defaultCenter] postNotificationName:@"LOGIN_SUCCESS" object:nil];
-//                            [userDef setObject:self.passwordField.text forKey:@"password"];
-//
-//                        }
-//                    }];
-//                }
-//            }];
-//        }
-//    }];
-}
 
 
 -(BOOL)verify{
-//    if ([Helper isBlankString:self.userNameField.text] || ![self verifyUserNameField]) {
-//        [MBProgressHUD showText:@"请输入规范的用户名"];
-//        return NO;
-//    }
-//    if ([Helper isBlankString:self.passwordField.text] || ![self verifyPasswordField]) {
-//        [MBProgressHUD showText:@"请输入规范的密码"];
-//        return NO;
-//    }
-//    if ([Helper isBlankString:self.emailField.text] || ![self isEmailAddress]) {
-//        [MBProgressHUD showText:@"请输入可用的邮箱"];
-//        return NO;
-//    }
-//    if (![Helper isBlankString:self.phoneNumberField.text]  && ![self isPhoneNo]) {
-//        [MBProgressHUD showText:@"请输入规范的手机号码"];
-//        return NO;
-//    }
+    if (![Helper isPhoneNumber:self.userNameField.text]) {
+        [ProgressHUD showError:@"请输入正确的手机号码！"];
+        return NO;
+    }
+    if (![self.code isEqualToString:self.codeField.text]) {
+        [ProgressHUD showError:@"验证码输入有误！"];
+        return NO;
+    }
+    if (![self.passwordField.text isEqualToString:self.secondPasswordField.text]) {
+        [ProgressHUD showError:@"两次密码输入不一致！"];
+        return NO;
+    }
     return YES;
 }
 
@@ -373,14 +240,6 @@
 //    return [pred evaluateWithObject:self.telField.text];
 //}
 
-
-
--(NSArray *)placeHoldArray{
-    if (!_placeHoldArray) {
-        _placeHoldArray = [NSArray arrayWithObjects:@"请输入手机号",@"请输入验证码",@"请输入密码",@"请再次输入密码", nil];
-    }
-    return _placeHoldArray;
-}
 
 @end
     

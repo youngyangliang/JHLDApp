@@ -26,6 +26,12 @@
 //字体
 #define FONT(s) [UIFont systemFontOfSize:s]
 
-#define BASE_URL @"http://192.168.19.121:8080/jhldxm/jhldxm_server/service/AccountService/"
+#define UserInfoDef [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"]
+
+#define LOGIN_STATE UserInfoDef?1:0
+
+#define URL @"http://192.168.19.121:8080/jhldxm"
+
+#define BASE_URL [NSString stringWithFormat:@"%@/jhldxm_server/service/AccountService/",URL]
 
 #endif /* Common_h */

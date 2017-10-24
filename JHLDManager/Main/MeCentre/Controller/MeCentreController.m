@@ -9,10 +9,14 @@
 #import "MeCentreController.h"
 #import "MeCentreCell.h"
 #import "LoginViewController.h"
+#import "UserInfoViewController.h"
 
 @interface MeCentreController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) UILabel *nameLabel;
+@property (nonatomic, strong) UIImageView *headImg;
+@property (nonatomic, strong) UIView *headView;
 @end
 
 @implementation MeCentreController
@@ -20,6 +24,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setUpUI];
+//    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userInfo"];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.tableView.tableHeaderView = [self headView];
 }
 
 -(void)setUpUI{
@@ -52,7 +62,7 @@
 
 -(UIView *)headView{
     UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 160)];
-    
+    self.headView = headView;
     UIImageView *headImg = [[UIImageView alloc]init];
     [headView addSubview:headImg];
     [headImg mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -60,8 +70,13 @@
         make.centerX.equalTo(headView);
         make.top.equalTo(headView).offset(30);
     }];
-    headImg.image = [UIImage imageNamed:@"headIcon"];
     [headImg rounded:40];
+    self.headImg = headImg;
+//    [headImg sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"headIcon"]];
+    
+    headView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(headViewTap:)];
+    [headView addGestureRecognizer:tap];
     
     UILabel *nameLabel = [[UILabel alloc]init];
     [headView addSubview:nameLabel];
@@ -70,7 +85,8 @@
         make.centerX.equalTo(headView);
     }];
     nameLabel.font = [UIFont boldSystemFontOfSize:18];
-    nameLabel.text = @"昵称：黄辉";
+//    nameLabel.text = @"昵称：黄辉";
+    self.nameLabel = nameLabel;
     
     UIView *line = [[UIView alloc]init];
     [headView addSubview:line];
@@ -79,16 +95,40 @@
         make.height.mas_equalTo(0.5);
     }];
     line.backgroundColor = UIColorFromRGB(0x999999);
+    
+    if (LOGIN_STATE) {
+        nameLabel.text = [NSString stringWithFormat:@"昵称：%@",UserInfoDef[@"name"]];
+        [headImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",URL,UserInfoDef[@"imageUrl"]]] placeholderImage:[UIImage imageNamed:@"headIcon"]];
+
+        headView.userInteractionEnabled = NO;
+    }else{
+        headView.userInteractionEnabled = YES;
+        nameLabel.text = @"点击登录";
+        headImg.image = [UIImage imageNamed:@"headIcon"];
+    }
+    
     return headView;
+}
+
+-(void)headViewTap:(UIGestureRecognizer *)recoginzer{
+    if (!LOGIN_STATE) {
+        LoginViewController *loginVC = [[LoginViewController alloc]init];
+        [self.navigationController pushViewController:loginVC animated:YES];
+    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if (!LOGIN_STATE) {
+        LoginViewController *loginVC = [[LoginViewController alloc]init];
+        [self.navigationController pushViewController:loginVC animated:YES];
+        return;
+    }
     switch (indexPath.row) {
         case 0:
         {
-            LoginViewController *loginVC = [[LoginViewController alloc]init];
-            [self.navigationController pushViewController:loginVC animated:YES];
+            UserInfoViewController *userInfoVC = [[UserInfoViewController alloc]init];
+            [self.navigationController pushViewController:userInfoVC animated:YES];
         }
             break;
             

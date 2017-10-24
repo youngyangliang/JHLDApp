@@ -16,6 +16,7 @@
             self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
             self.estimatedRowHeight = 44;
             self.rowHeight = UITableViewAutomaticDimension;
+            self.backgroundColor = [UIColor whiteColor];
         }
     }
     return self;

@@ -88,7 +88,7 @@
     return [pred evaluateWithObject:phoneNumber];
 }
 
-- (NSString *) md5:(NSString *) input {
++ (NSString *) md5:(NSString *) input {
     const char *cStr = [input UTF8String];
     unsigned char digest[CC_MD5_DIGEST_LENGTH];
     CC_MD5( cStr, strlen(cStr), digest ); // This is the md5 call
@@ -99,5 +99,13 @@
         [output appendFormat:@"%02x", digest[i]];
     
     return  output;
+}
+
++(void)updataUserDefultValue:(nullable id)value forKey:(NSString *)key{
+    NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *user = [NSMutableDictionary dictionaryWithDictionary:[userDef objectForKey:@"userInfo"]];
+    [user setValue:value forKey:key];
+    
+    [userDef setObject:user forKey:@"userInfo"];
 }
 @end
