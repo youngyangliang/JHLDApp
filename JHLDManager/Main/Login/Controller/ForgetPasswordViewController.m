@@ -45,7 +45,7 @@
         make.right.equalTo(self.view).offset(-40);
         make.height.mas_equalTo(50);
     }];
-    userNameField.leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkout_password"]];
+    userNameField.leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"user_icon"]];
     userNameField.leftViewMode = UITextFieldViewModeAlways;
     [Helper addBordToView:userNameField andColor:baseColor andRadius:25 BorderWith:1];
     userNameField.placeholder = @"请输入手机号码";
@@ -63,7 +63,7 @@
         make.top.equalTo(userNameField.mas_bottom).offset(20);
         make.left.right.height.equalTo(userNameField);
     }];
-    codeField.leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkout_password"]];
+    codeField.leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"code_icon"]];
     codeField.leftViewMode = UITextFieldViewModeAlways;
     [Helper addBordToView:codeField andColor:baseColor andRadius:25 BorderWith:1];
     codeField.placeholder = @"请输入验证码";
@@ -96,7 +96,7 @@
         make.top.equalTo(codeField.mas_bottom).offset(20);
         make.left.right.height.equalTo(userNameField);
     }];
-    passwordField.leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkout_password"]];
+    passwordField.leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"password_icon"]];
     passwordField.leftViewMode = UITextFieldViewModeAlways;
     [Helper addBordToView:passwordField andColor:baseColor andRadius:25 BorderWith:1];
     passwordField.placeholder = @"请输入新密码";
@@ -112,7 +112,7 @@
         make.top.equalTo(passwordField.mas_bottom).offset(20);
         make.left.right.height.equalTo(userNameField);
     }];
-    secondPasswordField.leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkout_password"]];
+    secondPasswordField.leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"password_icon"]];
     secondPasswordField.leftViewMode = UITextFieldViewModeAlways;
     [Helper addBordToView:secondPasswordField andColor:baseColor andRadius:25 BorderWith:1];
     secondPasswordField.placeholder = @"请再次输入新密码";

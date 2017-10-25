@@ -8,11 +8,18 @@
 
 #import "HomeViewController.h"
 #import "HomeCell.h"
+#import "ProjectAnalysisModel.h"
+#import "HomeChartView.h"
 
+#define buttonHeight 110
 @interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>
 
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, weak) UILabel *qb;
+@property (nonatomic, weak) UILabel *qq;
+@property (nonatomic, weak) UILabel *sg;
+@property (nonatomic, weak) UILabel *wg;
 @end
 
 @implementation HomeViewController
@@ -20,6 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setUpUI];
+    [self loadData];
 }
 
 -(void)setUpUI{
@@ -64,24 +72,28 @@
 }
 
 -(UIView *)tableViewFootView{
-    UIView *footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 400)];
+    UIView *footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 490)];
     footView.backgroundColor = [UIColor whiteColor];
     UIView *line1 = [[UIView alloc]init];
     [footView addSubview:line1];
-    line1.frame = CGRectMake(0, 0, CGRectGetWidth(footView.frame), 0.5);
-    line1.backgroundColor = UIColorFromRGB(0x999999);
+    line1.frame = CGRectMake(0, 0, CGRectGetWidth(footView.frame), 40);
+    line1.backgroundColor = RGBC(240);
     
-    UILabel *textLab = [[UILabel alloc]init];
-    [footView addSubview:textLab];
-    textLab.frame = CGRectMake(15, 15, WIDTH, 25);
-    textLab.font = FONT(14);
-    textLab.text = @"项目进展情况";
+    UILabel *progressTextLab = [[UILabel alloc]init];
+    [line1 addSubview:progressTextLab];
+    [progressTextLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(line1);
+        make.left.equalTo(line1).offset(15);
+    }];
+    progressTextLab.textColor = baseColor;
+    progressTextLab.font = FONT(16);
+    progressTextLab.text = @"项目进展情况";
     
     NSArray *projectArray = @[
-  @{@"imgName":@"bank_guangfa",@"text":@"工程总数",@"count":@"425"},
-  @{@"imgName":@"bank_huaxia",@"text":@"前期",@"count":@"169"},
-  @{@"imgName":@"bank_zhaoshang",@"text":@"施工",@"count":@"203"},
-  @{@"imgName":@"bank_zhongguo",@"text":@"完工",@"count":@"53"}];
+  @{@"imgName":@"total_project",@"text":@"工程总数"},
+  @{@"imgName":@"earlier_project",@"text":@"前期"},
+  @{@"imgName":@"construction_project",@"text":@"施工"},
+  @{@"imgName":@"finish_project",@"text":@"完工"}];
     
     for (int i = 0; i<projectArray.count; i++) {
         NSDictionary *dict = projectArray[i];
@@ -89,7 +101,7 @@
         [footView addSubview:projectBtn];
         CGFloat btnW = (WIDTH - 30 - 5*3)/4.0;
         CGFloat btnX = 15 + i*(btnW+5);
-        projectBtn.frame = CGRectMake(btnX, CGRectGetMaxY(textLab.frame)+10, btnW, 80);
+        projectBtn.frame = CGRectMake(btnX, CGRectGetMaxY(line1.frame)+10, btnW, buttonHeight);
         projectBtn.tag = i;
         [projectBtn addTarget:self action:@selector(projectBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -103,29 +115,83 @@
         UILabel *countText = [[UILabel alloc]init];
         [projectBtn addSubview:countText];
         [countText mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(projectBtn.mas_centerX).offset(-3);
+            make.centerX.equalTo(projectImg);
             make.top.equalTo(projectImg.mas_bottom).offset(5);
         }];
+        countText.font = FONT(14);
         countText.text = [dict objectForKey:@"text"];
-        countText.font = FONT(11);
         
         UILabel *countLab = [[UILabel alloc]init];
         [projectBtn addSubview:countLab];
         [countLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(projectBtn.mas_centerX).offset(3);
-            make.top.equalTo(projectImg.mas_bottom).offset(5);
+            make.centerX.equalTo(projectImg);
+            make.top.equalTo(countText.mas_bottom).offset(5);
         }];
-        countLab.text = [dict objectForKey:@"count"];
-        countLab.font = [UIFont boldSystemFontOfSize:14];
+        countLab.font = [UIFont boldSystemFontOfSize:15];
+        
+        switch (i) {
+            case 0:
+                self.qb = countLab;
+                break;
+            case 1:
+                self.qq = countLab;
+                break;
+            case 2:
+                self.sg = countLab;
+                break;
+            case 3:
+                self.wg = countLab;
+                break;
+                
+            default:
+                break;
+        }
         
     }
     UIView *line2 = [[UIView alloc]init];
     [footView addSubview:line2];
-    line2.frame = CGRectMake(0, CGRectGetMaxY(textLab.frame)+90, CGRectGetWidth(footView.frame), 0.5);
-    line2.backgroundColor = UIColorFromRGB(0x999999);
+    line2.frame = CGRectMake(0, CGRectGetMaxY(line1.frame)+buttonHeight, CGRectGetWidth(footView.frame), 40);
+    line2.backgroundColor = RGBC(240);
     
+    UILabel *investTextLab = [[UILabel alloc]init];
+    [line2 addSubview:investTextLab];
+    [investTextLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(line2);
+        make.left.equalTo(line2).offset(15);
+    }];
+    investTextLab.textColor = baseColor;
+    investTextLab.font = FONT(16);
+    investTextLab.text = @"项目投资情况";
+    
+    HomeChartView *chartView = [[HomeChartView alloc]init];
+    [footView addSubview:chartView];
+    [chartView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(line2.mas_bottom);
+        make.left.right.bottom.equalTo(footView);
+    }];
     
     return footView;
+}
+
+-(void)loadData{
+    [RequestData AppPOST:@"projectAnalysis" parameters:nil response:^(id responseObject, BOOL responseOK, NSString *msg) {
+        if (responseOK) {
+            ProjectAnalysisModel *model = [ProjectAnalysisModel mj_objectWithKeyValues:responseObject];
+            self.qb.text = model.qb;
+            self.qq.text = model.qq;
+            self.sg.text = model.sg;
+            self.wg.text = model.sg;
+            [self loadProjectInvestment];
+        }
+    }];
+}
+
+-(void)loadProjectInvestment{
+    [RequestData AppPOST:@"projectInvestment" parameters:nil response:^(id responseObject, BOOL responseOK, NSString *msg) {
+        if (responseOK) {
+            NSLog(@"%@",responseObject);
+        }
+    }];
 }
 
 -(void)projectBtnClick:(UIButton *)projectBtn{

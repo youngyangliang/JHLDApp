@@ -34,4 +34,9 @@
 
 #define BASE_URL [NSString stringWithFormat:@"%@/jhldxm_server/service/AccountService/",URL]
 
+#define BASE_APPURL [NSString stringWithFormat:@"%@/jhldxm_server/service/appProject/",URL]
+
+//通知
+#define CHANGE_USERINFO @"chnageUserInfo"
+
 #endif /* Common_h */

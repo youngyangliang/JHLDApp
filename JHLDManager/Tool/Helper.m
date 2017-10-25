@@ -56,6 +56,22 @@
     return [dateFormatter stringFromDate:date];
 }
 
++(NSString *)getYYMMFormatDate:(NSDate *)date{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy"];
+    NSString *yearString = [dateFormatter stringFromDate:date];
+    [dateFormatter setDateFormat:@"MM"];
+    NSString *monthString = [dateFormatter stringFromDate:date];
+    return [NSString stringWithFormat:@"%@年%@月",yearString,monthString];
+}
+
++(NSString *)getYYFormatDate:(NSDate *)date{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy"];
+    NSString *yearString = [dateFormatter stringFromDate:date];
+    return [NSString stringWithFormat:@"%@年",yearString];
+}
+
 +(void)addCornerRadiusToView:(UIView *)view byRoundingCorners:(UIRectCorner)corners cornerRadii:(CGSize)cornerRadii{
     
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds byRoundingCorners:corners cornerRadii:cornerRadii];

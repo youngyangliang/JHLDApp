@@ -19,6 +19,11 @@
 //返回格式化时间
 +(NSString *)getFormatDate:(NSDate *)date;
 
+//返回格式化时间 年 月
++(NSString *)getYYMMFormatDate:(NSDate *)date;
+//返回格式化时间 年
++(NSString *)getYYFormatDate:(NSDate *)date;
+
 +(void)addCornerRadiusToView:(UIView *)view byRoundingCorners:(UIRectCorner)corners cornerRadii:(CGSize)cornerRadii;
 
 //获取控制器
@@ -33,5 +38,5 @@
 
 + (NSString *) md5:(NSString *) input;
 
-+(void)updataUserDefultValue:(nullable id)value forKey:(NSString *)key;
++(void)updataUserDefultValue:(nullable id)value forKey:(nullable NSString *)key;
 @end

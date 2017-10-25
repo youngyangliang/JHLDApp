@@ -34,7 +34,7 @@
     keyboardManager.enableAutoToolbar = YES; // 控制是否显示键盘上的工具条
     
     keyboardManager.placeholderFont = [UIFont boldSystemFontOfSize:15]; // 设置占位文字的字体
-    keyboardManager.keyboardDistanceFromTextField = 10.0f; // 输入框距离键盘的距离
+    keyboardManager.keyboardDistanceFromTextField = 20.0f; // 输入框距离键盘的距离
 }
 
 

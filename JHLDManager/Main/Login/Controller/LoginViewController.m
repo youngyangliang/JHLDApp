@@ -45,7 +45,7 @@
         make.right.equalTo(self.view).offset(-40);
         make.height.mas_equalTo(50);
     }];
-    userNameField.leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkout_password"]];
+    userNameField.leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"user_icon"]];
     userNameField.leftViewMode = UITextFieldViewModeAlways;
     [Helper addBordToView:userNameField andColor:baseColor andRadius:25 BorderWith:1];
     userNameField.placeholder = @"请输入手机号码";
@@ -62,7 +62,7 @@
         make.top.equalTo(userNameField.mas_bottom).offset(20);
         make.left.right.height.equalTo(userNameField);
     }];
-    passwordField.leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checkout_password"]];
+    passwordField.leftView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"password_icon"]];
     passwordField.leftViewMode = UITextFieldViewModeAlways;
     [Helper addBordToView:passwordField andColor:baseColor andRadius:25 BorderWith:1];
     passwordField.placeholder = @"请输入密码";

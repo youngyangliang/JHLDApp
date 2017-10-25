@@ -8,6 +8,8 @@
 
 #import "UserInfoViewController.h"
 #import "ChangeNameController.h"
+#import "ChangeTelephoneController.h"
+#import "ChangePasswordViewController.h"
 
 #import<AVFoundation/AVCaptureDevice.h>
 #import<AVFoundation/AVMediaFormat.h>
@@ -18,6 +20,7 @@
 @property (nonatomic, weak) UIButton *headViewBtn;
 @property (nonatomic, weak) UIImageView *headImg;
 @property (nonatomic, weak) UILabel *nameLab;
+@property (nonatomic, weak) UILabel *telLab;
 @end
 
 @implementation UserInfoViewController
@@ -25,7 +28,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"个人中心";
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeUserInfoNoti:) name:CHANGE_USERINFO object:nil];
     [self setUpUI];
+}
+
+-(void)changeUserInfoNoti:(NSNotification *)noti{
+    self.nameLab.text = UserInfoDef[@"name"];
+    self.telLab.text = UserInfoDef[@"userLogin"];
 }
 
 -(void)setUpUI{
@@ -148,7 +157,36 @@
         make.right.equalTo(rightArrow3.mas_left).offset(-10);
     }];
     telLab.text = UserInfoDef[@"userLogin"];
-    self.nameLab = telLab;
+    self.telLab = telLab;
+    
+    UIButton *passwordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [scrollView addSubview:passwordBtn];
+    [passwordBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(telBtn.mas_bottom).offset(1);
+        make.left.right.equalTo(self.view);
+        make.height.mas_equalTo(50);
+    }];
+    [passwordBtn setBackgroundColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [passwordBtn addTarget:self action:@selector(passwordBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    UILabel *passwordTextLab = [[UILabel alloc]init];
+    [passwordBtn addSubview:passwordTextLab];
+    [passwordTextLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(passwordBtn);
+        make.left.equalTo(passwordBtn).offset(20);
+    }];
+    passwordTextLab.text = @"修改密码";
+    
+    
+    UIImageView *rightArrow4 = [[UIImageView alloc]init];
+    [passwordBtn addSubview:rightArrow4];
+    [rightArrow4 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(passwordBtn);
+        make.right.equalTo(passwordBtn).offset(-15);
+        make.width.height.mas_equalTo(20);
+    }];
+    rightArrow4.image = [UIImage imageNamed:@"arrow_right"];
 }
 
 -(void)headViewBtnClick{
@@ -179,6 +217,14 @@
 
 -(void)telBtnClick{
     
+    ChangeTelephoneController *changeTelephoneVC = [[ChangeTelephoneController alloc]init];
+    [self.navigationController pushViewController:changeTelephoneVC animated:YES];
+}
+
+-(void)passwordBtnClick{
+    
+    ChangePasswordViewController *changePasswordVC = [[ChangePasswordViewController alloc]init];
+    [self.navigationController pushViewController:changePasswordVC animated:YES];
 }
 
 -(void)tap:(UIGestureRecognizer *)recognizer{
@@ -278,6 +324,9 @@
     }];
 }
 
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 
 @end

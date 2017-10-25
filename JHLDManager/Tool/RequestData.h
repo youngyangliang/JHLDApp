@@ -15,4 +15,8 @@ typedef void(^responseBlock)(id responseObject,BOOL responseOK,NSString *msg);
   parameters:(id)parameters
     response:(responseBlock)response;
 
++ (void)AppPOST:(NSString *)URLString
+     parameters:(id)parameters
+       response:(responseBlock)response;
+
 @end

@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setUpUI];
-//    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userInfo"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userInfo"];
 }
 
 -(void)viewWillAppear:(BOOL)animated{

@@ -14,6 +14,8 @@
 {
     CGRect iconRect = [super leftViewRectForBounds:bounds];
     iconRect.origin.x += 15; //像右边偏15
+    iconRect.size.height = 27;
+    iconRect.size.width = 25;
     return iconRect;
 }
 //UITextField 文字与输入框的距离

@@ -9,10 +9,24 @@
 #import "RequestData.h"
 
 @implementation RequestData
+
++ (void)AppPOST:(NSString *)URLString
+     parameters:(id)parameters
+       response:(responseBlock)response{
+    [self privatePOST:URLString urlType:BASE_APPURL parameters:parameters response:response];
+}
+
 + (void)POST:(NSString *)URLString
   parameters:(id)parameters
     response:(responseBlock)response{
-    NSString *url = [NSString stringWithFormat:@"%@%@",BASE_URL,URLString];
+    [self privatePOST:URLString urlType:BASE_URL parameters:parameters response:response];
+}
+
++ (void)privatePOST:(NSString *)URLString
+            urlType:(NSString *)urlType
+         parameters:(id)parameters
+           response:(responseBlock)response{
+    NSString *url = [NSString stringWithFormat:@"%@%@",urlType,URLString];
     [[NetworkInstance instance] POST:url parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -33,4 +47,5 @@
         }
     }];
 }
+
 @end

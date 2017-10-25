@@ -23,13 +23,14 @@
     [super viewDidLoad];
     
     [self addChildViewControllers];
+    self.tabBar.tintColor=RGB(0, 188, 203);
 }
 //添加子控制器
 -(void)addChildViewControllers{
     [self addChildViewController:[[HomeViewController alloc]init] title:@"廊道动态" imageName:@"home"];
-    [self addChildViewController:[[ProjectMapController alloc]init] title:@"项目博览" imageName:@"category"];
-    [self addChildViewController:[[ProblemSuperviseController alloc]init] title:@"问题督导" imageName:@"order"];
-    [self addChildViewController:[[MeCentreController alloc]init] title:@"个人中心" imageName:@"me"];
+    [self addChildViewController:[[ProjectMapController alloc]init] title:@"项目博览" imageName:@"ProjectMap"];
+    [self addChildViewController:[[ProblemSuperviseController alloc]init] title:@"问题督导" imageName:@"ProblemSupervise"];
+    [self addChildViewController:[[MeCentreController alloc]init] title:@"个人中心" imageName:@"MeCentre"];
 }
 -(void)addChildViewController:(UIViewController *)childController title:(NSString *)title imageName:(NSString *)imageName {
     NavViewController *nav = [[NavViewController alloc]initWithRootViewController:childController];
