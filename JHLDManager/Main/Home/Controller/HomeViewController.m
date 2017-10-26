@@ -183,7 +183,7 @@
 }
 
 -(void)loadData{
-    [ProgressHUD show:@"正在加载..."];
+//    [ProgressHUD show:@"正在加载..."];
     [RequestData AppPOST:@"projectAnalysis" parameters:nil response:^(id responseObject, BOOL responseOK, NSString *msg) {
         if (responseOK) {
             self.projectAnalysisModel = [ProjectAnalysisModel mj_objectWithKeyValues:responseObject];

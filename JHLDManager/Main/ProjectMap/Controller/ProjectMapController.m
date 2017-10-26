@@ -8,7 +8,8 @@
 
 #import "ProjectMapController.h"
 
-@interface ProjectMapController ()
+@interface ProjectMapController ()<BMKMapViewDelegate,BMKLocationServiceDelegate>
+@property (nonatomic, strong) BMKMapView *mapView;
 
 @end
 
@@ -28,6 +29,8 @@
     segmentedControl.tintColor = baseColor;
     self.navigationItem.titleView = segmentedControl;
     [segmentedControl addTarget:self action:@selector(segmentedControlValueChange:) forControlEvents:UIControlEventValueChanged];
+    
+    [self setUpBaiduMap];
 }
 
 -(void)segmentedControlValueChange:(UISegmentedControl *)seg{
@@ -44,6 +47,26 @@
         default:
             break;
     }
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [_mapView viewWillAppear];
+    _mapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [_mapView viewWillDisappear];
+    _mapView.delegate = nil; // 不用时，置nil
+}
+
+-(void)setUpBaiduMap{
+    BMKMapView* mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT-NavgBar_HEIGHT-TabBar_HEIGHT)];
+    [self.view addSubview:mapView];
+    self.mapView = mapView;
+    self.mapView.delegate = self;
+    self.mapView.showMapScaleBar = YES;
+    [_mapView setMapType:BMKMapTypeSatellite];
+    //设定地图View能否支持旋转
+    self.mapView.rotateEnabled = NO;
 }
 
 @end

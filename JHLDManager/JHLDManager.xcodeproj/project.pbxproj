@@ -20,6 +20,12 @@
 		CEBC7716C9FD72488D7AC1F0 /* libPods-JHLDManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB4C65FA0624990F3420C15 /* libPods-JHLDManager.a */; };
 		E11601481FA16AEF004B9DAF /* ProjectInvestmentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E11601471FA16AEF004B9DAF /* ProjectInvestmentModel.m */; };
 		E116014B1FA16B4F004B9DAF /* ProjectProgressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E116014A1FA16B4F004B9DAF /* ProjectProgressModel.m */; };
+		E116016B1FA1C457004B9DAF /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E116016A1FA1C457004B9DAF /* CFNetwork.framework */; };
+		E116016D1FA1C469004B9DAF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E116016C1FA1C468004B9DAF /* CoreLocation.framework */; };
+		E116016F1FA1C47E004B9DAF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E116016E1FA1C47E004B9DAF /* UIKit.framework */; };
+		E11601711FA1C48F004B9DAF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E11601701FA1C48F004B9DAF /* CoreGraphics.framework */; };
+		E11601731FA1C4BF004B9DAF /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E11601721FA1C4BF004B9DAF /* libz.tbd */; };
+		E11601761FA1DF9B004B9DAF /* ProblemSuperviseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E11601751FA1DF9B004B9DAF /* ProblemSuperviseCell.m */; };
 		E116E8D41FA07C0E00A7225B /* ProjectAnalysisModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E116E8D31FA07C0E00A7225B /* ProjectAnalysisModel.m */; };
 		E116E8D71FA083FD00A7225B /* HomeChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E116E8D61FA083FD00A7225B /* HomeChartView.m */; };
 		E11FF1E71F9F43EA00C48424 /* ChangeNameController.m in Sources */ = {isa = PBXBuildFile; fileRef = E11FF1E61F9F43EA00C48424 /* ChangeNameController.m */; };
@@ -94,6 +100,13 @@
 		E11601471FA16AEF004B9DAF /* ProjectInvestmentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectInvestmentModel.m; sourceTree = "<group>"; };
 		E11601491FA16B4F004B9DAF /* ProjectProgressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectProgressModel.h; sourceTree = "<group>"; };
 		E116014A1FA16B4F004B9DAF /* ProjectProgressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectProgressModel.m; sourceTree = "<group>"; };
+		E116016A1FA1C457004B9DAF /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		E116016C1FA1C468004B9DAF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E116016E1FA1C47E004B9DAF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E11601701FA1C48F004B9DAF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E11601721FA1C4BF004B9DAF /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		E11601741FA1DF9B004B9DAF /* ProblemSuperviseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProblemSuperviseCell.h; sourceTree = "<group>"; };
+		E11601751FA1DF9B004B9DAF /* ProblemSuperviseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProblemSuperviseCell.m; sourceTree = "<group>"; };
 		E116E8D21FA07C0D00A7225B /* ProjectAnalysisModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectAnalysisModel.h; sourceTree = "<group>"; };
 		E116E8D31FA07C0E00A7225B /* ProjectAnalysisModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectAnalysisModel.m; sourceTree = "<group>"; };
 		E116E8D51FA083FD00A7225B /* HomeChartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeChartView.h; sourceTree = "<group>"; };
@@ -150,6 +163,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E11601731FA1C4BF004B9DAF /* libz.tbd in Frameworks */,
+				E11601711FA1C48F004B9DAF /* CoreGraphics.framework in Frameworks */,
+				E116016F1FA1C47E004B9DAF /* UIKit.framework in Frameworks */,
+				E116016D1FA1C469004B9DAF /* CoreLocation.framework in Frameworks */,
+				E116016B1FA1C457004B9DAF /* CFNetwork.framework in Frameworks */,
 				CEBC7716C9FD72488D7AC1F0 /* libPods-JHLDManager.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,6 +330,11 @@
 		8507FF75066B000D69D577F4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E11601721FA1C4BF004B9DAF /* libz.tbd */,
+				E11601701FA1C48F004B9DAF /* CoreGraphics.framework */,
+				E116016E1FA1C47E004B9DAF /* UIKit.framework */,
+				E116016C1FA1C468004B9DAF /* CoreLocation.framework */,
+				E116016A1FA1C457004B9DAF /* CFNetwork.framework */,
 				0AB4C65FA0624990F3420C15 /* libPods-JHLDManager.a */,
 			);
 			name = Frameworks;
@@ -413,6 +436,8 @@
 		E12302671F999E1E00979FAC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E11601741FA1DF9B004B9DAF /* ProblemSuperviseCell.h */,
+				E11601751FA1DF9B004B9DAF /* ProblemSuperviseCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -675,6 +700,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-JHLDManager/Pods-JHLDManager-resources.sh",
+				"${PODS_ROOT}/BaiduMapKit/BaiduMapKit/BaiduMapAPI_Map.framework/Resources/mapapi.bundle",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyBoardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/ProgressHUD/ProgressHUD/ProgressHUD/ProgressHUD.bundle",
@@ -712,6 +738,7 @@
 				E116014B1FA16B4F004B9DAF /* ProjectProgressModel.m in Sources */,
 				E12302971F9A493600979FAC /* BaseTableView.m in Sources */,
 				008469421F998419002C99C6 /* AppDelegate.m in Sources */,
+				E11601761FA1DF9B004B9DAF /* ProblemSuperviseCell.m in Sources */,
 				E1FD1C651FA01ABE00D3B002 /* ChangeTelephoneController.m in Sources */,
 				E12302801F99A0C000979FAC /* MeCentreController.m in Sources */,
 				E129828C1F9ECE1600F0DAFC /* YLTextField.m in Sources */,

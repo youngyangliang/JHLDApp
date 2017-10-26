@@ -11,5 +11,6 @@ pod 'SDCycleScrollView'
 pod 'YBPopupMenu'
 pod 'IQKeyboardManager'
 pod 'ProgressHUD'
+pod 'BaiduMapKit'
 
 end

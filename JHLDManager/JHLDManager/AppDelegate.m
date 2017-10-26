@@ -10,7 +10,7 @@
 #import "BaseTabBarController.h"
 
 @interface AppDelegate ()
-
+@property (strong, nonatomic) BMKMapManager *mapManager;
 @end
 
 @implementation AppDelegate
@@ -22,6 +22,12 @@
     [self.window makeKeyAndVisible];
     
     [self setKeyboard];
+    
+    self.mapManager = [[BMKMapManager alloc]init];
+    BOOL ret = [self.mapManager start:@"f1BVacEeVzTZeohBnWGlIrYA50mOwy7j"  generalDelegate:nil];
+    if (!ret) {
+        NSLog(@"manager start failed!");
+    }
     return YES;
 }
 
