@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProjectInvestmentModel.h"
+#import "ProjectProgressModel.h"
 
 @interface HomeChartView : UIView
-
+-(instancetype)initWithModel:(ProjectInvestmentModel *)projectInvestmentModel;
 @end

@@ -138,7 +138,7 @@
         
         NSMutableDictionary *param = [NSMutableDictionary dictionary];
         [param setValue:self.userNameField.text forKey:@"userLogin"];
-        [param setValue:[Helper md5:self.passwordField.text] forKey:@"pwd"];
+        [param setValue:self.passwordField.text forKey:@"pwd"];
         [RequestData POST:@"login" parameters:param response:^(id responseObject, BOOL responseOK, NSString *msg) {
             if (responseOK) {
                 NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
@@ -155,6 +155,10 @@
 -(BOOL)verify{
     if (![Helper isPhoneNumber:self.userNameField.text]) {
         [ProgressHUD showError:@"请输入正确的手机号码"];
+        return NO;
+    }
+    if ([Helper isBlankString:self.passwordField.text]) {
+        [ProgressHUD showError:@"密码不能为空"];
         return NO;
     }
 

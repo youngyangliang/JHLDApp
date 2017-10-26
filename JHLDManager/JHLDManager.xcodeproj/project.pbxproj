@@ -18,6 +18,8 @@
 		0084695A1F998419002C99C6 /* JHLDManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 008469591F998419002C99C6 /* JHLDManagerTests.m */; };
 		008469651F998419002C99C6 /* JHLDManagerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 008469641F998419002C99C6 /* JHLDManagerUITests.m */; };
 		CEBC7716C9FD72488D7AC1F0 /* libPods-JHLDManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AB4C65FA0624990F3420C15 /* libPods-JHLDManager.a */; };
+		E11601481FA16AEF004B9DAF /* ProjectInvestmentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E11601471FA16AEF004B9DAF /* ProjectInvestmentModel.m */; };
+		E116014B1FA16B4F004B9DAF /* ProjectProgressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E116014A1FA16B4F004B9DAF /* ProjectProgressModel.m */; };
 		E116E8D41FA07C0E00A7225B /* ProjectAnalysisModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E116E8D31FA07C0E00A7225B /* ProjectAnalysisModel.m */; };
 		E116E8D71FA083FD00A7225B /* HomeChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E116E8D61FA083FD00A7225B /* HomeChartView.m */; };
 		E11FF1E71F9F43EA00C48424 /* ChangeNameController.m in Sources */ = {isa = PBXBuildFile; fileRef = E11FF1E61F9F43EA00C48424 /* ChangeNameController.m */; };
@@ -88,6 +90,10 @@
 		0AB4C65FA0624990F3420C15 /* libPods-JHLDManager.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JHLDManager.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6245EA9EFF2B9958E1CA0706 /* Pods-JHLDManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JHLDManager.release.xcconfig"; path = "Pods/Target Support Files/Pods-JHLDManager/Pods-JHLDManager.release.xcconfig"; sourceTree = "<group>"; };
 		A2A1CA3F4027D7F95F2F75C3 /* Pods-JHLDManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JHLDManager.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JHLDManager/Pods-JHLDManager.debug.xcconfig"; sourceTree = "<group>"; };
+		E11601461FA16AEF004B9DAF /* ProjectInvestmentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectInvestmentModel.h; sourceTree = "<group>"; };
+		E11601471FA16AEF004B9DAF /* ProjectInvestmentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectInvestmentModel.m; sourceTree = "<group>"; };
+		E11601491FA16B4F004B9DAF /* ProjectProgressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectProgressModel.h; sourceTree = "<group>"; };
+		E116014A1FA16B4F004B9DAF /* ProjectProgressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectProgressModel.m; sourceTree = "<group>"; };
 		E116E8D21FA07C0D00A7225B /* ProjectAnalysisModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectAnalysisModel.h; sourceTree = "<group>"; };
 		E116E8D31FA07C0E00A7225B /* ProjectAnalysisModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectAnalysisModel.m; sourceTree = "<group>"; };
 		E116E8D51FA083FD00A7225B /* HomeChartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeChartView.h; sourceTree = "<group>"; };
@@ -220,6 +226,10 @@
 			children = (
 				E116E8D21FA07C0D00A7225B /* ProjectAnalysisModel.h */,
 				E116E8D31FA07C0E00A7225B /* ProjectAnalysisModel.m */,
+				E11601461FA16AEF004B9DAF /* ProjectInvestmentModel.h */,
+				E11601471FA16AEF004B9DAF /* ProjectInvestmentModel.m */,
+				E11601491FA16B4F004B9DAF /* ProjectProgressModel.h */,
+				E116014A1FA16B4F004B9DAF /* ProjectProgressModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -699,6 +709,7 @@
 				E116E8D41FA07C0E00A7225B /* ProjectAnalysisModel.m in Sources */,
 				E1476EAB1F9AF00E00324B1A /* Helper.m in Sources */,
 				E1F492591F9D724E00A2D1E6 /* RequestData.m in Sources */,
+				E116014B1FA16B4F004B9DAF /* ProjectProgressModel.m in Sources */,
 				E12302971F9A493600979FAC /* BaseTableView.m in Sources */,
 				008469421F998419002C99C6 /* AppDelegate.m in Sources */,
 				E1FD1C651FA01ABE00D3B002 /* ChangeTelephoneController.m in Sources */,
@@ -711,6 +722,7 @@
 				E1F492601F9DC50100A2D1E6 /* UserInfoViewController.m in Sources */,
 				004426A41F99D1A1000E9CB3 /* MeCentreCell.m in Sources */,
 				004426531F99C367000E9CB3 /* UIView+Category.m in Sources */,
+				E11601481FA16AEF004B9DAF /* ProjectInvestmentModel.m in Sources */,
 				E123027D1F99A08F00979FAC /* HomeViewController.m in Sources */,
 				E1F4925D1F9DBC9700A2D1E6 /* ForgetPasswordViewController.m in Sources */,
 				E11FF1E71F9F43EA00C48424 /* ChangeNameController.m in Sources */,

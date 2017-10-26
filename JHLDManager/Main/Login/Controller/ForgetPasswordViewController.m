@@ -202,10 +202,11 @@
         NSMutableDictionary *param = [NSMutableDictionary dictionary];
         [param setValue:self.userNameField.text forKey:@"userLogin"];
         [param setValue:self.codeField.text forKey:@"pin"];
-        [param setValue:[Helper md5:self.passwordField.text] forKey:@"pwd"];
-        [RequestData POST:@"register" parameters:param response:^(id responseObject, BOOL responseOK, NSString *msg) {
+        [param setValue:self.passwordField.text forKey:@"npwd"];
+        [RequestData POST:@"findPwd" parameters:param response:^(id responseObject, BOOL responseOK, NSString *msg) {
             if (responseOK) {
-                [ProgressHUD showSuccess:@"更改成功"];
+                [ProgressHUD showSuccess:msg];
+                [self.navigationController popViewControllerAnimated:YES];
             }else{
                 [ProgressHUD showError:msg];
             }

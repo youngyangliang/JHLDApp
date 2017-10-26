@@ -8,12 +8,19 @@
 
 #import "HomeChartView.h"
 
+
 #define lineColor UIColorFromRGB(0x999999)
+
+
+@interface HomeChartView ()
+@property (nonatomic, strong) ProjectInvestmentModel *projectInvestmentModel;
+@end
 
 @implementation HomeChartView
 
--(instancetype)init{
+-(instancetype)initWithModel:(ProjectInvestmentModel *)projectInvestmentModel{
     if (self = [super init]) {
+        self.projectInvestmentModel = projectInvestmentModel;
         [self setUpUI];
     }
     return self;
@@ -110,7 +117,8 @@
             make.right.equalTo(leftScale.mas_left).offset(-5);
         }];
         leftScaleValue.font = FONT(12);
-        leftScaleValue.text = [NSString stringWithFormat:@"%d",120 - i*(120/6)];
+        self.projectInvestmentModel.max = @"120";
+        leftScaleValue.text = [NSString stringWithFormat:@"%d",[self.projectInvestmentModel.max intValue] - i*([self.projectInvestmentModel.max intValue]/6)];
     }
     for (int i = 0; i<11; i++) {
         UIView *rightScale = [[UIView alloc]init];
@@ -148,16 +156,23 @@
         make.left.equalTo(chartScrollView);
         make.top.equalTo(chartScrollView).offset(150);
         make.height.mas_equalTo(1);
-        make.width.mas_equalTo(500);
+        make.width.mas_equalTo(50*self.projectInvestmentModel.area.count);
     }];
     Xline.backgroundColor = lineColor;
-    for (int i = 0; i<10; i++) {
+    
+     NSMutableArray *pointArray = [NSMutableArray array];
+    for (int i = 0; i<self.projectInvestmentModel.area.count; i++) {
+        ProjectProgressModel *progressModel = self.projectInvestmentModel.area[i];
+        progressModel.plan = [NSString stringWithFormat:@"%d",arc4random() % 120];
+        progressModel.fact = [NSString stringWithFormat:@"%d",arc4random() % [progressModel.plan intValue]];
+        progressModel.per = [NSString stringWithFormat:@"%d",arc4random() % 90+10];
+        
         UIView *planView = [[UIView alloc]init];
         [chartScrollView addSubview:planView];
         [planView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(chartScrollView).offset(10+(30+20)*i);
             make.width.mas_equalTo(30);
-            make.height.mas_equalTo(50);
+            make.height.mas_equalTo(150/[self.projectInvestmentModel.max intValue]*[progressModel.plan intValue]);
             make.bottom.equalTo(Xline.mas_top);
         }];
         planView.backgroundColor = RGB(220, 100, 6);
@@ -166,9 +181,25 @@
         [chartScrollView addSubview:factView];
         [factView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.bottom.width.equalTo(planView);
-            make.height.mas_equalTo(30);
+            make.height.mas_equalTo(150/[self.projectInvestmentModel.max intValue]*[progressModel.fact intValue]);
         }];
         factView.backgroundColor = RGB(250, 190, 0);
+        
+        UIImageView *dotImg = [[UIImageView alloc]init];
+        [chartScrollView addSubview:dotImg];
+        [dotImg rounded:3];
+        dotImg.backgroundColor = baseColor;
+        CGFloat dotX = 25 + i*50;
+        CGFloat dotY = 150 - ([progressModel.per intValue]/100.0*150);
+        [dotImg mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(chartScrollView.mas_left).offset(dotX);
+            make.centerY.equalTo(chartScrollView.mas_top).offset(dotY);
+            make.width.height.mas_equalTo(6);
+        }];
+        
+        CGPoint point = CGPointMake(dotX, dotY);
+        NSValue *value = [NSValue valueWithCGPoint:point];
+        [pointArray addObject:value];
         
         UILabel *areaLab = [[UILabel alloc]init];
         [chartScrollView addSubview:areaLab];
@@ -177,9 +208,27 @@
             make.top.equalTo(Xline.mas_bottom).offset(5);
         }];
         areaLab.font = FONT(12);
-        areaLab.text = @"高新区";
+        NSString *subStr = [progressModel.areaname substringToIndex:3];
+        areaLab.text = subStr;
     }
-    chartScrollView.contentSize = CGSizeMake(50*10, 0);
+    UIBezierPath *linePath = [UIBezierPath bezierPath];
+    
+    for (int i = 0; i<pointArray.count; i++) {
+        NSValue *tmpValue = pointArray[i];
+        CGPoint point = [tmpValue CGPointValue];
+        if (i==0) {
+            [linePath moveToPoint:CGPointMake(point.x, point.y)];
+        }
+        [linePath addLineToPoint:CGPointMake(point.x, point.y)];
+    }
+    CAShapeLayer *lineLayer = [CAShapeLayer layer];
+    lineLayer.lineWidth = 2;
+    lineLayer.strokeColor = baseColor.CGColor;
+    lineLayer.path = linePath.CGPath;
+    lineLayer.fillColor = nil;
+    [chartScrollView.layer addSublayer:lineLayer];
+    
+    chartScrollView.contentSize = CGSizeMake(50*self.projectInvestmentModel.area.count, 0);
     chartScrollView.bounces = NO;
     chartScrollView.showsHorizontalScrollIndicator = NO;
     

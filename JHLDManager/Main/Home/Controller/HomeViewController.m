@@ -10,16 +10,16 @@
 #import "HomeCell.h"
 #import "ProjectAnalysisModel.h"
 #import "HomeChartView.h"
+#import "ProjectInvestmentModel.h"
 
 #define buttonHeight 110
 @interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>
 
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
-@property (nonatomic, weak) UILabel *qb;
-@property (nonatomic, weak) UILabel *qq;
-@property (nonatomic, weak) UILabel *sg;
-@property (nonatomic, weak) UILabel *wg;
+
+@property (nonatomic, strong) ProjectAnalysisModel *projectAnalysisModel;
+@property (nonatomic, strong) ProjectInvestmentModel *projectInvestmentModel;
 @end
 
 @implementation HomeViewController
@@ -40,8 +40,13 @@
     tableView.dataSource = self;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.tableHeaderView = [self tableViewHeadView];
-    tableView.tableFooterView = [self tableViewFootView];
+//    tableView.tableFooterView = [self tableViewFootView];
+    tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshNewData)];
     
+}
+
+-(void)refreshNewData{
+    [self loadData];
 }
 
 -(UIView *)tableViewHeadView{
@@ -131,16 +136,20 @@
         
         switch (i) {
             case 0:
-                self.qb = countLab;
+//                self.qb = countLab;
+                countLab.text = self.projectAnalysisModel.qb;
                 break;
             case 1:
-                self.qq = countLab;
+//                self.qq = countLab;
+                countLab.text = self.projectAnalysisModel.qq;
                 break;
             case 2:
-                self.sg = countLab;
+//                self.sg = countLab;
+                countLab.text = self.projectAnalysisModel.sg;
                 break;
             case 3:
-                self.wg = countLab;
+//                self.wg = countLab;
+                countLab.text = self.projectAnalysisModel.sg;
                 break;
                 
             default:
@@ -163,7 +172,7 @@
     investTextLab.font = FONT(16);
     investTextLab.text = @"项目投资情况";
     
-    HomeChartView *chartView = [[HomeChartView alloc]init];
+    HomeChartView *chartView = [[HomeChartView alloc]initWithModel:self.projectInvestmentModel];
     [footView addSubview:chartView];
     [chartView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(line2.mas_bottom);
@@ -174,14 +183,13 @@
 }
 
 -(void)loadData{
+    [ProgressHUD show:@"正在加载..."];
     [RequestData AppPOST:@"projectAnalysis" parameters:nil response:^(id responseObject, BOOL responseOK, NSString *msg) {
         if (responseOK) {
-            ProjectAnalysisModel *model = [ProjectAnalysisModel mj_objectWithKeyValues:responseObject];
-            self.qb.text = model.qb;
-            self.qq.text = model.qq;
-            self.sg.text = model.sg;
-            self.wg.text = model.sg;
+            self.projectAnalysisModel = [ProjectAnalysisModel mj_objectWithKeyValues:responseObject];
             [self loadProjectInvestment];
+        }else{
+            [ProgressHUD showError:msg];
         }
     }];
 }
@@ -189,7 +197,13 @@
 -(void)loadProjectInvestment{
     [RequestData AppPOST:@"projectInvestment" parameters:nil response:^(id responseObject, BOOL responseOK, NSString *msg) {
         if (responseOK) {
-            NSLog(@"%@",responseObject);
+//            NSLog(@"%@",responseObject);
+            [ProgressHUD dismiss];
+            self.projectInvestmentModel = [ProjectInvestmentModel mj_objectWithKeyValues:responseObject];
+            self.tableView.tableFooterView = [self tableViewFootView];
+            [self.tableView.mj_header endRefreshing];
+        }else{
+            [ProgressHUD showError:msg];
         }
     }];
 }

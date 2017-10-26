@@ -106,8 +106,8 @@
     if ([self verify]) {
         NSMutableDictionary *param = [NSMutableDictionary dictionary];
         [param setValue:UserInfoDef[@"userLogin"] forKey:@"userLogin"];
-        [param setValue:[Helper md5:self.oldPasswordField.text] forKey:@"pwd"];
-        [param setValue:[Helper md5:self.passwordField.text] forKey:@"npwd"];
+        [param setValue:self.oldPasswordField.text forKey:@"pwd"];
+        [param setValue:self.passwordField.text forKey:@"npwd"];
         [RequestData POST:@"updatePwd" parameters:param response:^(id responseObject, BOOL responseOK, NSString *msg) {
             if (responseOK) {
                 [ProgressHUD showSuccess:msg];

@@ -203,7 +203,7 @@
         NSMutableDictionary *param = [NSMutableDictionary dictionary];
         [param setValue:self.userNameField.text forKey:@"userLogin"];
         [param setValue:self.codeField.text forKey:@"pin"];
-        [param setValue:[Helper md5:self.passwordField.text] forKey:@"pwd"];
+        [param setValue:self.passwordField.text forKey:@"pwd"];
         [param setValue:self.userNameField.text forKey:@"name"];
         
         [RequestData POST:@"register" parameters:param response:^(id responseObject, BOOL responseOK, NSString *msg) {

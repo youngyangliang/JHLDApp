@@ -16,22 +16,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self setUpUI];
+}
+-(void)setUpUI{
+    NSArray *segmentedArray = [[NSArray alloc]initWithObjects:@"项目博览",@"示范段博览",nil];
+    //初始化UISegmentedControl
+    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc]initWithItems:segmentedArray];
+    segmentedControl.frame = CGRectMake(0, 0, WIDTH/2, 35);
+    // 设置默认选择项索引
+    segmentedControl.selectedSegmentIndex = 0;
+    segmentedControl.tintColor = baseColor;
+    self.navigationItem.titleView = segmentedControl;
+    [segmentedControl addTarget:self action:@selector(segmentedControlValueChange:) forControlEvents:UIControlEventValueChanged];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)segmentedControlValueChange:(UISegmentedControl *)seg{
+    switch (seg.selectedSegmentIndex) {
+        case 0:
+//            self.mapView.hidden = NO;
+//            self.distributionView.hidden = YES;
+            break;
+        case 1:
+//            self.mapView.hidden = YES;
+//            self.distributionView.hidden = NO;
+            break;
+            
+        default:
+            break;
+    }
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
