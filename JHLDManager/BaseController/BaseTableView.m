@@ -14,10 +14,10 @@
     if (self = [super initWithFrame:frame style:style]) {
         if (@available(iOS 11.0, *)) {
             self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-            self.estimatedRowHeight = 44;
-            self.rowHeight = UITableViewAutomaticDimension;
-            self.backgroundColor = [UIColor whiteColor];
         }
+        self.estimatedRowHeight = 44;
+        self.rowHeight = UITableViewAutomaticDimension;
+        self.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }

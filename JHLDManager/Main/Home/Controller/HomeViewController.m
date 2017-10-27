@@ -136,19 +136,15 @@
         
         switch (i) {
             case 0:
-//                self.qb = countLab;
                 countLab.text = self.projectAnalysisModel.qb;
                 break;
             case 1:
-//                self.qq = countLab;
                 countLab.text = self.projectAnalysisModel.qq;
                 break;
             case 2:
-//                self.sg = countLab;
                 countLab.text = self.projectAnalysisModel.sg;
                 break;
             case 3:
-//                self.wg = countLab;
                 countLab.text = self.projectAnalysisModel.sg;
                 break;
                 

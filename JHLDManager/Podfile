@@ -12,5 +12,6 @@ pod 'YBPopupMenu'
 pod 'IQKeyboardManager'
 pod 'ProgressHUD'
 pod 'BaiduMapKit'
+pod 'SGPagingView'
 
 end

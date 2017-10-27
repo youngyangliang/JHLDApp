@@ -58,6 +58,10 @@
     _mapView.delegate = nil; // 不用时，置nil
 }
 
+
+- (void)mapView:(BMKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
+//    NSLog(@"zoomLevel==%f",self.mapView.zoomLevel); NSLog(@"latitude==%f,longitude==%f",self.mapView.centerCoordinate.latitude,self.mapView.centerCoordinate.longitude);
+}
 -(void)setUpBaiduMap{
     BMKMapView* mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT-NavgBar_HEIGHT-TabBar_HEIGHT)];
     [self.view addSubview:mapView];
@@ -65,6 +69,8 @@
     self.mapView.delegate = self;
     self.mapView.showMapScaleBar = YES;
     [_mapView setMapType:BMKMapTypeSatellite];
+    self.mapView.zoomLevel = 13;
+    self.mapView.centerCoordinate = CLLocationCoordinate2DMake(29.487451, 119.298462);
     //设定地图View能否支持旋转
     self.mapView.rotateEnabled = NO;
 }

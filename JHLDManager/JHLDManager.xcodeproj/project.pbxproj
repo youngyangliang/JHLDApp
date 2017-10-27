@@ -44,6 +44,8 @@
 		E129828F1F9F0B3F00F0DAFC /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E129828E1F9F0B3F00F0DAFC /* UserInfoModel.m */; };
 		E1476EA71F9AEE5000324B1A /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1476EA61F9AEE5000324B1A /* HomeCell.m */; };
 		E1476EAB1F9AF00E00324B1A /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = E1476EAA1F9AF00E00324B1A /* Helper.m */; };
+		E167ED401FA2E281009DBFB6 /* SuperviseDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = E167ED3F1FA2E281009DBFB6 /* SuperviseDetailController.m */; };
+		E167ED431FA2E38D009DBFB6 /* ProblemSuperviseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E167ED421FA2E38D009DBFB6 /* ProblemSuperviseModel.m */; };
 		E1F492561F9D719100A2D1E6 /* NetworkInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F492551F9D719100A2D1E6 /* NetworkInstance.m */; };
 		E1F492591F9D724E00A2D1E6 /* RequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F492581F9D724E00A2D1E6 /* RequestData.m */; };
 		E1F4925D1F9DBC9700A2D1E6 /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F4925C1F9DBC9700A2D1E6 /* ForgetPasswordViewController.m */; };
@@ -144,6 +146,10 @@
 		E1476EA61F9AEE5000324B1A /* HomeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeCell.m; sourceTree = "<group>"; };
 		E1476EA91F9AF00E00324B1A /* Helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
 		E1476EAA1F9AF00E00324B1A /* Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
+		E167ED3E1FA2E281009DBFB6 /* SuperviseDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuperviseDetailController.h; sourceTree = "<group>"; };
+		E167ED3F1FA2E281009DBFB6 /* SuperviseDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuperviseDetailController.m; sourceTree = "<group>"; };
+		E167ED411FA2E38D009DBFB6 /* ProblemSuperviseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProblemSuperviseModel.h; sourceTree = "<group>"; };
+		E167ED421FA2E38D009DBFB6 /* ProblemSuperviseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProblemSuperviseModel.m; sourceTree = "<group>"; };
 		E1F492541F9D719100A2D1E6 /* NetworkInstance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkInstance.h; sourceTree = "<group>"; };
 		E1F492551F9D719100A2D1E6 /* NetworkInstance.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkInstance.m; sourceTree = "<group>"; };
 		E1F492571F9D724E00A2D1E6 /* RequestData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RequestData.h; sourceTree = "<group>"; };
@@ -420,8 +426,9 @@
 		E12302651F999E1E00979FAC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E12302811F99A0D300979FAC /* ProblemSuperviseController.h */,
-				E12302821F99A0D300979FAC /* ProblemSuperviseController.m */,
+				E167ED461FA303A4009DBFB6 /* Public */,
+				E167ED451FA30394009DBFB6 /* Charge */,
+				E167ED441FA30357009DBFB6 /* Manager */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -429,6 +436,8 @@
 		E12302661F999E1E00979FAC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E167ED411FA2E38D009DBFB6 /* ProblemSuperviseModel.h */,
+				E167ED421FA2E38D009DBFB6 /* ProblemSuperviseModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -528,6 +537,31 @@
 			);
 			path = Tool;
 			sourceTree = SOURCE_ROOT;
+		};
+		E167ED441FA30357009DBFB6 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				E12302811F99A0D300979FAC /* ProblemSuperviseController.h */,
+				E12302821F99A0D300979FAC /* ProblemSuperviseController.m */,
+				E167ED3E1FA2E281009DBFB6 /* SuperviseDetailController.h */,
+				E167ED3F1FA2E281009DBFB6 /* SuperviseDetailController.m */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		E167ED451FA30394009DBFB6 /* Charge */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Charge;
+			sourceTree = "<group>";
+		};
+		E167ED461FA303A4009DBFB6 /* Public */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Public;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -748,10 +782,12 @@
 				0044265B1F99C4AE000E9CB3 /* NSArray+Log.m in Sources */,
 				E1F492601F9DC50100A2D1E6 /* UserInfoViewController.m in Sources */,
 				004426A41F99D1A1000E9CB3 /* MeCentreCell.m in Sources */,
+				E167ED401FA2E281009DBFB6 /* SuperviseDetailController.m in Sources */,
 				004426531F99C367000E9CB3 /* UIView+Category.m in Sources */,
 				E11601481FA16AEF004B9DAF /* ProjectInvestmentModel.m in Sources */,
 				E123027D1F99A08F00979FAC /* HomeViewController.m in Sources */,
 				E1F4925D1F9DBC9700A2D1E6 /* ForgetPasswordViewController.m in Sources */,
+				E167ED431FA2E38D009DBFB6 /* ProblemSuperviseModel.m in Sources */,
 				E11FF1E71F9F43EA00C48424 /* ChangeNameController.m in Sources */,
 				E1F492561F9D719100A2D1E6 /* NetworkInstance.m in Sources */,
 			);
