@@ -1,14 +1,14 @@
 //
-//  ProblemSuperviseCell.m
+//  ProjectDifficultCell.m
 //  JHLDManager
 //
-//  Created by 杨亮 on 2017/10/26.
+//  Created by 杨亮 on 2017/10/30.
 //  Copyright © 2017年 booway.com. All rights reserved.
 //
 
-#import "ProblemSuperviseCell.h"
+#import "ProjectDifficultCell.h"
 
-@interface ProblemSuperviseCell ()
+@interface ProjectDifficultCell ()
 @property (nonatomic, weak) UIImageView *imgView;
 @property (nonatomic, weak) UILabel *nameLabel;
 @property (nonatomic, weak) UILabel *typeLabel;
@@ -16,7 +16,8 @@
 @property (nonatomic, weak) UILabel *timeLabel;
 @property (nonatomic, weak) UILabel *msgLabel;
 @end
-@implementation ProblemSuperviseCell
+
+@implementation ProjectDifficultCell
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -58,18 +59,18 @@
     self.typeLabel = typeLabel;
     typeLabel.font = FONT(16);
     typeLabel.text = @"示范项目";
-//    typeLabel.textColor = baseColor;
+    //    typeLabel.textColor = baseColor;
     
-    UILabel *feedbackLabel = [[UILabel alloc]init];
-    [self.contentView addSubview:feedbackLabel];
-    [feedbackLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(typeLabel);
-        make.right.equalTo(self.contentView).offset(-15);
-    }];
-    self.feedbackLabel = feedbackLabel;
-    feedbackLabel.font = FONT(18);
-    feedbackLabel.text = @"未反馈";
-    feedbackLabel.textColor = baseColor;
+//    UILabel *feedbackLabel = [[UILabel alloc]init];
+//    [self.contentView addSubview:feedbackLabel];
+//    [feedbackLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(typeLabel);
+//        make.right.equalTo(self.contentView).offset(-15);
+//    }];
+//    self.feedbackLabel = feedbackLabel;
+//    feedbackLabel.font = FONT(18);
+//    feedbackLabel.text = @"未反馈";
+//    feedbackLabel.textColor = baseColor;
     
     UILabel *timeLabel = [[UILabel alloc]init];
     [self.contentView addSubview:timeLabel];

@@ -33,7 +33,6 @@
 		E123027A1F999FF700979FAC /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E12302791F999FF700979FAC /* BaseViewController.m */; };
 		E123027D1F99A08F00979FAC /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E123027C1F99A08F00979FAC /* HomeViewController.m */; };
 		E12302801F99A0C000979FAC /* MeCentreController.m in Sources */ = {isa = PBXBuildFile; fileRef = E123027F1F99A0C000979FAC /* MeCentreController.m */; };
-		E12302831F99A0D300979FAC /* ProblemSuperviseController.m in Sources */ = {isa = PBXBuildFile; fileRef = E12302821F99A0D300979FAC /* ProblemSuperviseController.m */; };
 		E12302861F99A0E400979FAC /* ProjectMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = E12302851F99A0E400979FAC /* ProjectMapController.m */; };
 		E12302891F99A14400979FAC /* NavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E12302881F99A14400979FAC /* NavViewController.m */; };
 		E12302911F99ECCE00979FAC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E12302901F99ECCE00979FAC /* LoginViewController.m */; };
@@ -44,6 +43,14 @@
 		E129828F1F9F0B3F00F0DAFC /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E129828E1F9F0B3F00F0DAFC /* UserInfoModel.m */; };
 		E1476EA71F9AEE5000324B1A /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1476EA61F9AEE5000324B1A /* HomeCell.m */; };
 		E1476EAB1F9AF00E00324B1A /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = E1476EAA1F9AF00E00324B1A /* Helper.m */; };
+		E166C9E31FA6AC6600B2F05B /* ManagerProblemSuperviseController.m in Sources */ = {isa = PBXBuildFile; fileRef = E166C9E21FA6AC6600B2F05B /* ManagerProblemSuperviseController.m */; };
+		E166C9E61FA6AF1A00B2F05B /* ManagerSuperviseController.m in Sources */ = {isa = PBXBuildFile; fileRef = E166C9E51FA6AF1A00B2F05B /* ManagerSuperviseController.m */; };
+		E166C9E91FA6AF4B00B2F05B /* ManagerDifficultyController.m in Sources */ = {isa = PBXBuildFile; fileRef = E166C9E81FA6AF4B00B2F05B /* ManagerDifficultyController.m */; };
+		E166C9EF1FA6CB6100B2F05B /* AreaView.m in Sources */ = {isa = PBXBuildFile; fileRef = E166C9EE1FA6CB6000B2F05B /* AreaView.m */; };
+		E166C9F21FA6D42C00B2F05B /* ProjectDifficultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E166C9F11FA6D42C00B2F05B /* ProjectDifficultCell.m */; };
+		E166C9F51FA6FDCB00B2F05B /* TypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E166C9F41FA6FDCB00B2F05B /* TypeView.m */; };
+		E166C9F81FA6FE6C00B2F05B /* StateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E166C9F71FA6FE6C00B2F05B /* StateView.m */; };
+		E166C9FB1FA72C3200B2F05B /* StartSupervisorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E166C9FA1FA72C3200B2F05B /* StartSupervisorViewController.m */; };
 		E167ED401FA2E281009DBFB6 /* SuperviseDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = E167ED3F1FA2E281009DBFB6 /* SuperviseDetailController.m */; };
 		E167ED431FA2E38D009DBFB6 /* ProblemSuperviseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E167ED421FA2E38D009DBFB6 /* ProblemSuperviseModel.m */; };
 		E1F492561F9D719100A2D1E6 /* NetworkInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F492551F9D719100A2D1E6 /* NetworkInstance.m */; };
@@ -124,8 +131,6 @@
 		E123027C1F99A08F00979FAC /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		E123027E1F99A0C000979FAC /* MeCentreController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeCentreController.h; sourceTree = "<group>"; };
 		E123027F1F99A0C000979FAC /* MeCentreController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeCentreController.m; sourceTree = "<group>"; };
-		E12302811F99A0D300979FAC /* ProblemSuperviseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProblemSuperviseController.h; sourceTree = "<group>"; };
-		E12302821F99A0D300979FAC /* ProblemSuperviseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProblemSuperviseController.m; sourceTree = "<group>"; };
 		E12302841F99A0E400979FAC /* ProjectMapController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectMapController.h; sourceTree = "<group>"; };
 		E12302851F99A0E400979FAC /* ProjectMapController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectMapController.m; sourceTree = "<group>"; };
 		E12302871F99A14400979FAC /* NavViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavViewController.h; sourceTree = "<group>"; };
@@ -146,6 +151,22 @@
 		E1476EA61F9AEE5000324B1A /* HomeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeCell.m; sourceTree = "<group>"; };
 		E1476EA91F9AF00E00324B1A /* Helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
 		E1476EAA1F9AF00E00324B1A /* Helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
+		E166C9E11FA6AC6600B2F05B /* ManagerProblemSuperviseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ManagerProblemSuperviseController.h; sourceTree = "<group>"; };
+		E166C9E21FA6AC6600B2F05B /* ManagerProblemSuperviseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ManagerProblemSuperviseController.m; sourceTree = "<group>"; };
+		E166C9E41FA6AF1A00B2F05B /* ManagerSuperviseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ManagerSuperviseController.h; sourceTree = "<group>"; };
+		E166C9E51FA6AF1A00B2F05B /* ManagerSuperviseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ManagerSuperviseController.m; sourceTree = "<group>"; };
+		E166C9E71FA6AF4B00B2F05B /* ManagerDifficultyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ManagerDifficultyController.h; sourceTree = "<group>"; };
+		E166C9E81FA6AF4B00B2F05B /* ManagerDifficultyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ManagerDifficultyController.m; sourceTree = "<group>"; };
+		E166C9ED1FA6CB6000B2F05B /* AreaView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AreaView.h; sourceTree = "<group>"; };
+		E166C9EE1FA6CB6000B2F05B /* AreaView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AreaView.m; sourceTree = "<group>"; };
+		E166C9F01FA6D42C00B2F05B /* ProjectDifficultCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectDifficultCell.h; sourceTree = "<group>"; };
+		E166C9F11FA6D42C00B2F05B /* ProjectDifficultCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectDifficultCell.m; sourceTree = "<group>"; };
+		E166C9F31FA6FDCB00B2F05B /* TypeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypeView.h; sourceTree = "<group>"; };
+		E166C9F41FA6FDCB00B2F05B /* TypeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypeView.m; sourceTree = "<group>"; };
+		E166C9F61FA6FE6C00B2F05B /* StateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StateView.h; sourceTree = "<group>"; };
+		E166C9F71FA6FE6C00B2F05B /* StateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StateView.m; sourceTree = "<group>"; };
+		E166C9F91FA72C3200B2F05B /* StartSupervisorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StartSupervisorViewController.h; sourceTree = "<group>"; };
+		E166C9FA1FA72C3200B2F05B /* StartSupervisorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StartSupervisorViewController.m; sourceTree = "<group>"; };
 		E167ED3E1FA2E281009DBFB6 /* SuperviseDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SuperviseDetailController.h; sourceTree = "<group>"; };
 		E167ED3F1FA2E281009DBFB6 /* SuperviseDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuperviseDetailController.m; sourceTree = "<group>"; };
 		E167ED411FA2E38D009DBFB6 /* ProblemSuperviseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProblemSuperviseModel.h; sourceTree = "<group>"; };
@@ -447,6 +468,14 @@
 			children = (
 				E11601741FA1DF9B004B9DAF /* ProblemSuperviseCell.h */,
 				E11601751FA1DF9B004B9DAF /* ProblemSuperviseCell.m */,
+				E166C9F01FA6D42C00B2F05B /* ProjectDifficultCell.h */,
+				E166C9F11FA6D42C00B2F05B /* ProjectDifficultCell.m */,
+				E166C9ED1FA6CB6000B2F05B /* AreaView.h */,
+				E166C9EE1FA6CB6000B2F05B /* AreaView.m */,
+				E166C9F31FA6FDCB00B2F05B /* TypeView.h */,
+				E166C9F41FA6FDCB00B2F05B /* TypeView.m */,
+				E166C9F61FA6FE6C00B2F05B /* StateView.h */,
+				E166C9F71FA6FE6C00B2F05B /* StateView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -541,10 +570,16 @@
 		E167ED441FA30357009DBFB6 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				E12302811F99A0D300979FAC /* ProblemSuperviseController.h */,
-				E12302821F99A0D300979FAC /* ProblemSuperviseController.m */,
 				E167ED3E1FA2E281009DBFB6 /* SuperviseDetailController.h */,
 				E167ED3F1FA2E281009DBFB6 /* SuperviseDetailController.m */,
+				E166C9E11FA6AC6600B2F05B /* ManagerProblemSuperviseController.h */,
+				E166C9E21FA6AC6600B2F05B /* ManagerProblemSuperviseController.m */,
+				E166C9E41FA6AF1A00B2F05B /* ManagerSuperviseController.h */,
+				E166C9E51FA6AF1A00B2F05B /* ManagerSuperviseController.m */,
+				E166C9E71FA6AF4B00B2F05B /* ManagerDifficultyController.h */,
+				E166C9E81FA6AF4B00B2F05B /* ManagerDifficultyController.m */,
+				E166C9F91FA72C3200B2F05B /* StartSupervisorViewController.h */,
+				E166C9FA1FA72C3200B2F05B /* StartSupervisorViewController.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -755,15 +790,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E166C9EF1FA6CB6100B2F05B /* AreaView.m in Sources */,
 				E123027A1F999FF700979FAC /* BaseViewController.m in Sources */,
 				E129828F1F9F0B3F00F0DAFC /* UserInfoModel.m in Sources */,
+				E166C9FB1FA72C3200B2F05B /* StartSupervisorViewController.m in Sources */,
+				E166C9E61FA6AF1A00B2F05B /* ManagerSuperviseController.m in Sources */,
 				E123029A1F9A539100979FAC /* RegisterViewController.m in Sources */,
 				E12302891F99A14400979FAC /* NavViewController.m in Sources */,
 				0044265A1F99C4AE000E9CB3 /* UIButton+FillColor.m in Sources */,
 				E1FD1C681FA0270000D3B002 /* ChangePasswordViewController.m in Sources */,
-				E12302831F99A0D300979FAC /* ProblemSuperviseController.m in Sources */,
 				E12302911F99ECCE00979FAC /* LoginViewController.m in Sources */,
 				E12302861F99A0E400979FAC /* ProjectMapController.m in Sources */,
+				E166C9F51FA6FDCB00B2F05B /* TypeView.m in Sources */,
 				008469501F998419002C99C6 /* main.m in Sources */,
 				E12302591F999A5900979FAC /* BaseTabBarController.m in Sources */,
 				E116E8D41FA07C0E00A7225B /* ProjectAnalysisModel.m in Sources */,
@@ -771,10 +809,14 @@
 				E1F492591F9D724E00A2D1E6 /* RequestData.m in Sources */,
 				E116014B1FA16B4F004B9DAF /* ProjectProgressModel.m in Sources */,
 				E12302971F9A493600979FAC /* BaseTableView.m in Sources */,
+				E166C9F81FA6FE6C00B2F05B /* StateView.m in Sources */,
 				008469421F998419002C99C6 /* AppDelegate.m in Sources */,
+				E166C9F21FA6D42C00B2F05B /* ProjectDifficultCell.m in Sources */,
 				E11601761FA1DF9B004B9DAF /* ProblemSuperviseCell.m in Sources */,
 				E1FD1C651FA01ABE00D3B002 /* ChangeTelephoneController.m in Sources */,
+				E166C9E91FA6AF4B00B2F05B /* ManagerDifficultyController.m in Sources */,
 				E12302801F99A0C000979FAC /* MeCentreController.m in Sources */,
+				E166C9E31FA6AC6600B2F05B /* ManagerProblemSuperviseController.m in Sources */,
 				E129828C1F9ECE1600F0DAFC /* YLTextField.m in Sources */,
 				E1476EA71F9AEE5000324B1A /* HomeCell.m in Sources */,
 				E116E8D71FA083FD00A7225B /* HomeChartView.m in Sources */,

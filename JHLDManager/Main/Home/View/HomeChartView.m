@@ -163,7 +163,7 @@
      NSMutableArray *pointArray = [NSMutableArray array];
     for (int i = 0; i<self.projectInvestmentModel.area.count; i++) {
         ProjectProgressModel *progressModel = self.projectInvestmentModel.area[i];
-        progressModel.plan = [NSString stringWithFormat:@"%d",arc4random() % 120];
+        progressModel.plan = [NSString stringWithFormat:@"%d",arc4random() % 120+1];
         progressModel.fact = [NSString stringWithFormat:@"%d",arc4random() % [progressModel.plan intValue]];
         progressModel.per = [NSString stringWithFormat:@"%d",arc4random() % 90+10];
         
