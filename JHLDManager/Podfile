@@ -13,5 +13,6 @@ pod 'IQKeyboardManager'
 pod 'ProgressHUD'
 pod 'BaiduMapKit'
 pod 'SGPagingView'
+pod 'TZImagePickerController'
 
 end

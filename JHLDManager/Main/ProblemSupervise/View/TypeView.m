@@ -69,9 +69,10 @@
 -(NSMutableArray *)dataArray{
     if (!_dataArray) {
         _dataArray = [NSMutableArray arrayWithObjects:
-                      @{@"type":@"全部",@"typeCode":@"0"},
-                      @{@"type":@"示范项目",@"typeCode":@"1"},
-                      @{@"type":@"普通项目",@"typeCode":@"2"},
+                      @{@"type":@"全部",@"typeCode":@""},
+                      @{@"type":@"普通项目",@"typeCode":@"1"},
+                      @{@"type":@"示范项目",@"typeCode":@"2"},
+                      @{@"type":@"重点项目",@"typeCode":@"3"},
                       nil];
     }
     return _dataArray;

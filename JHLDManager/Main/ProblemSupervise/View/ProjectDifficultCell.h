@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProjectDifficultyListModel.h"
 
 @interface ProjectDifficultCell : UITableViewCell
-
+@property (nonatomic, strong) ProjectDifficultyListModel *model;
 @end

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProblemSuperviseCell : UITableViewCell
+#import "ProblemSuperviseModel.h"
 
+@interface ProblemSuperviseCell : UITableViewCell
+@property (nonatomic, strong) ProblemSuperviseModel *model;
 @end

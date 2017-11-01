@@ -26,6 +26,9 @@
 //字体
 #define FONT(s) [UIFont systemFontOfSize:s]
 
+#define buttonsViewH 40
+#define searchViewH  0
+
 #define UserInfoDef [[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"]
 
 #define LOGIN_STATE UserInfoDef?1:0

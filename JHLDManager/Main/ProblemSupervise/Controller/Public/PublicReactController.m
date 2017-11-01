@@ -1,18 +1,16 @@
 //
-//  ManagerDifficultyController.m
+//  PublicReactController.m
 //  JHLDManager
 //
-//  Created by 杨亮 on 2017/10/30.
+//  Created by 杨亮 on 2017/11/1.
 //  Copyright © 2017年 booway.com. All rights reserved.
 //
 
-#import "ManagerDifficultyController.h"
-#import "ProjectDifficultCell.h"
-#import "ProjectDifficultyListModel.h"
-#import "ManagerDifficultyDetailController.h"
+#import "PublicReactController.h"
+#import "PublicReactCell.h"
+#import "ProjectFeedbackListModel.h"
 
-
-@interface ManagerDifficultyController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
+@interface PublicReactController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, weak) UISearchBar *searchBar;
@@ -28,12 +26,12 @@
 @property (nonatomic, weak) UIView *selectedView;
 
 @property (nonatomic, copy) NSString *areacode;
-@property (nonatomic, copy) NSString *projecttype;
-//@property (nonatomic, copy) NSString *projectstatus;
+//@property (nonatomic, copy) NSString *projecttype;
+@property (nonatomic, copy) NSString *projectstatus;
 
 @end
 
-@implementation ManagerDifficultyController
+@implementation PublicReactController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,15 +39,12 @@
     self.pagenum = 15;
     [self setUpButtons];
     [self setUpTableView];
-//    [self setUpButton];
+    [self setUpButton];
     [self loadData];
     
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveProjectMoni) name:@"saveProjectMoni" object:nil];
+    //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveProjectMoni) name:@"saveProjectMoni" object:nil];
 }
--(void)saveProjectMoni{
-    
-    [self loadData];
-}
+
 -(void)setUpButtons{
     
     //    UISearchBar *searchBar = [[UISearchBar alloc] init];
@@ -61,7 +56,7 @@
     //    [searchBar setPlaceholder:@"请输入关键字"];
     //    [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]] setTitle:@"取消"];
     
-    NSArray *textArray = @[@"区域",@"类型"];
+    NSArray *textArray = @[@"区域",@"状态"];
     UIView *buttonsView = [[UIView alloc]initWithFrame:CGRectMake(0, searchViewH, WIDTH, buttonsViewH)];
     [self.view addSubview:buttonsView];
     buttonsView.backgroundColor = [UIColor whiteColor];
@@ -138,50 +133,50 @@
             self.selectedView = self.areaView;
         }
             break;
-        case 2:
-        {
-            if (!self.typeView) {
-                TypeView *typeView = [[TypeView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 200)];
-                self.typeView = typeView;
-                typeView.backgroundColor = [UIColor whiteColor];
-                [self.bgView addSubview:typeView];
-                typeView.selectedCode = ^(NSString *code,NSString *name) {
-                    if ([name isEqualToString:@"全部"]) {
-                        [btn setTitle:@"类型" forState:UIControlStateNormal];
-                    }else{
-                        [btn setTitle:name forState:UIControlStateNormal];
-                    }
-                    self.projecttype = code;
-                    [self hiddenBgView];
-                    [self loadData];
-                };
-            }
-            self.typeView.hidden = NO;
-            self.selectedView = self.typeView;
-        }
-            break;
-//        case 3:
+//        case 2:
 //        {
-//            if (!self.stateView) {
-//                StateView *stateView = [[StateView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 150)];
-//                self.stateView = stateView;
-//                stateView.backgroundColor = [UIColor whiteColor];
-//                [self.bgView addSubview:stateView];
-//                stateView.selectedCode = ^(NSString *code,NSString *name) {
+//            if (!self.typeView) {
+//                TypeView *typeView = [[TypeView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 200)];
+//                self.typeView = typeView;
+//                typeView.backgroundColor = [UIColor whiteColor];
+//                [self.bgView addSubview:typeView];
+//                typeView.selectedCode = ^(NSString *code,NSString *name) {
 //                    if ([name isEqualToString:@"全部"]) {
-//                        [btn setTitle:@"状态" forState:UIControlStateNormal];
+//                        [btn setTitle:@"类型" forState:UIControlStateNormal];
 //                    }else{
 //                        [btn setTitle:name forState:UIControlStateNormal];
 //                    }
-//                    self.projectstatus = code;
+//                    self.projecttype = code;
 //                    [self hiddenBgView];
 //                    [self loadData];
 //                };
 //            }
-//            self.stateView.hidden = NO;
-//            self.selectedView = self.stateView;
+//            self.typeView.hidden = NO;
+//            self.selectedView = self.typeView;
 //        }
 //            break;
+        case 2:
+        {
+            if (!self.stateView) {
+                StateView *stateView = [[StateView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 150)];
+                self.stateView = stateView;
+                stateView.backgroundColor = [UIColor whiteColor];
+                [self.bgView addSubview:stateView];
+                stateView.selectedCode = ^(NSString *code,NSString *name) {
+                    if ([name isEqualToString:@"全部"]) {
+                        [btn setTitle:@"状态" forState:UIControlStateNormal];
+                    }else{
+                        [btn setTitle:name forState:UIControlStateNormal];
+                    }
+                    self.projectstatus = code;
+                    [self hiddenBgView];
+                    [self loadData];
+                };
+            }
+            self.stateView.hidden = NO;
+            self.selectedView = self.stateView;
+        }
+            break;
             
         default:
             break;
@@ -216,61 +211,61 @@
     [self loadData];
 }
 
-//-(void)setUpButton{
-//    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [self.view addSubview:btn];
-//    CGFloat btnW = 60;
-//    btn.frame = CGRectMake(WIDTH-btnW-15, CGRectGetMaxY(self.tableView.frame)-btnW-30, btnW, btnW);
-//    btn.alpha = 0.5;
-//    [btn setTitle:@"发起督导" forState:UIControlStateNormal];
-//    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    btn.titleLabel.font = FONT(14);
-//    [btn rounded:btnW/2];
-//    [btn setBackgroundColor:baseColor forState:UIControlStateNormal];
-//    [btn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
-//}
+-(void)setUpButton{
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:btn];
+    CGFloat btnW = 60;
+    btn.frame = CGRectMake(WIDTH-btnW-15, CGRectGetMaxY(self.tableView.frame)-btnW-30, btnW, btnW);
+    btn.alpha = 0.5;
+    [btn setTitle:@"反应问题" forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    btn.titleLabel.font = FONT(14);
+    [btn rounded:btnW/2];
+    [btn setBackgroundColor:baseColor forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
+}
 
-//-(void)btnClick{
+-(void)btnClick{
 //    StartSupervisorViewController *VC = [[StartSupervisorViewController alloc]init];
 //    [self.navigationController pushViewController:VC animated:YES];
-//}
+}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataArray.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *ID = @"superviseCell";
-    ProjectDifficultCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    PublicReactCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (!cell) {
-        cell = [[ProjectDifficultCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        cell = [[PublicReactCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
-    ProjectDifficultyListModel *model = self.dataArray[indexPath.row];
+    ProjectFeedbackListModel *model = self.dataArray[indexPath.row];
     cell.model = model;
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    ProjectDifficultyListModel *model = self.dataArray[indexPath.row];
-    ManagerDifficultyDetailController *detailVC = [[ManagerDifficultyDetailController alloc]init];
-    detailVC.diffid = model.diffid;
-    [self.navigationController pushViewController:detailVC animated:YES];
+    //    ProblemSuperviseModel *model = self.dataArray[indexPath.row];
+    //    ManagerSuperviseDetailController *detailVC = [[ManagerSuperviseDetailController alloc]init];
+    //    detailVC.projectId = model.superid;
+    //    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 -(void)loadData{
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setValue:self.areacode forKey:@"areacode"];
-    [param setValue:self.projecttype forKey:@"projecttype"];
+    [param setValue:self.projectstatus forKey:@"status"];
 //    [param setValue:self.projectstatus forKey:@"projectstatus"];
     [param setValue:[NSString stringWithFormat:@"%d",self.pageindex] forKey:@"pageindex"];
     [param setValue:[NSString stringWithFormat:@"%d",self.pagenum] forKey:@"pagenum"];
-    [RequestData AppPOST:@"projectDifficultyList" parameters:param response:^(id responseObject, BOOL responseOK, NSString *msg) {
+    [RequestData AppPOST:@"projectFeedbackList" parameters:param response:^(id responseObject, BOOL responseOK, NSString *msg) {
         [self endRefresh];
         if (responseOK) {
             NSLog(@"%@",responseObject);
             [self.dataArray removeAllObjects];
             for (NSDictionary *dict in responseObject) {
-                ProjectDifficultyListModel *model = [ProjectDifficultyListModel mj_objectWithKeyValues:dict];
+                ProjectFeedbackListModel *model = [ProjectFeedbackListModel mj_objectWithKeyValues:dict];
                 [self.dataArray addObject:model];
             }
             [self.tableView reloadData];
@@ -295,4 +290,6 @@
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+
 @end

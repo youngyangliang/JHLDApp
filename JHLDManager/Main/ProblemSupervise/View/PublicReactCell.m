@@ -1,14 +1,14 @@
 //
-//  ProblemSuperviseCell.m
+//  PublicReactCell.m
 //  JHLDManager
 //
-//  Created by 杨亮 on 2017/10/26.
+//  Created by 杨亮 on 2017/11/1.
 //  Copyright © 2017年 booway.com. All rights reserved.
 //
 
-#import "ProblemSuperviseCell.h"
+#import "PublicReactCell.h"
 
-@interface ProblemSuperviseCell ()
+@interface PublicReactCell ()
 @property (nonatomic, weak) UIImageView *imgView;
 @property (nonatomic, weak) UILabel *nameLabel;
 @property (nonatomic, weak) UILabel *typeLabel;
@@ -16,7 +16,8 @@
 @property (nonatomic, weak) UILabel *timeLabel;
 @property (nonatomic, weak) UILabel *msgLabel;
 @end
-@implementation ProblemSuperviseCell
+
+@implementation PublicReactCell
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -46,7 +47,7 @@
     }];
     self.nameLabel = nameLabel;
     nameLabel.font = FONT(16);
-//    nameLabel.text = @"湖海塘公园项目";
+    //    nameLabel.text = @"湖海塘公园项目";
     
     UILabel *typeLabel = [[UILabel alloc]init];
     [self.contentView addSubview:typeLabel];
@@ -56,8 +57,8 @@
     }];
     self.typeLabel = typeLabel;
     typeLabel.font = FONT(16);
-//    typeLabel.text = @"示范项目";
-//    typeLabel.textColor = baseColor;
+    //    typeLabel.text = @"示范项目";
+    //    typeLabel.textColor = baseColor;
     
     UILabel *feedbackLabel = [[UILabel alloc]init];
     [self.contentView addSubview:feedbackLabel];
@@ -67,7 +68,7 @@
     }];
     self.feedbackLabel = feedbackLabel;
     feedbackLabel.font = FONT(18);
-//    feedbackLabel.text = @"未反馈";
+    //    feedbackLabel.text = @"未反馈";
     feedbackLabel.textColor = baseColor;
     
     UILabel *timeLabel = [[UILabel alloc]init];
@@ -79,7 +80,7 @@
     self.timeLabel = timeLabel;
     timeLabel.font = FONT(16);
     timeLabel.textColor = RGBC(160);
-//    timeLabel.text = @"2017-10-26 17:53";
+    //    timeLabel.text = @"2017-10-26 17:53";
     
     UILabel *msgLabel = [[UILabel alloc]init];
     [self.contentView addSubview:msgLabel];
@@ -91,7 +92,7 @@
     self.msgLabel = msgLabel;
     msgLabel.textColor = RGBC(160);
     msgLabel.font = FONT(16);
-//    msgLabel.text = @"项目进展太慢，现场很多垃圾，脏乱差。项目进展太慢，现场很多垃圾，脏乱差";
+    //    msgLabel.text = @"项目进展太慢，现场很多垃圾，脏乱差。项目进展太慢，现场很多垃圾，脏乱差";
     
     UIView *line = [[UIView alloc]init];
     [self.contentView addSubview:line];
@@ -102,19 +103,18 @@
     line.backgroundColor = backgroudColor;
 }
 
--(void)setModel:(ProblemSuperviseModel *)model{
+-(void)setModel:(ProjectFeedbackListModel *)model{
     _model = model;
-//    self.imgView.image = [UIImage imageNamed:@"bigLogo"];
     [self.imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",URL,model.imageurl]] placeholderImage:[UIImage imageNamed:@"bigLogo"]];
-    self.nameLabel.text = model.projectname;
-    self.typeLabel.text = model.levelname;
-    self.timeLabel.text = model.projecttime;
-    if ([model.projectstatus isEqualToString:@"0"]) {
+    self.nameLabel.text = model.title;
+    self.typeLabel.text = model.type;
+    self.timeLabel.text = model.reporttime;
+    if ([model.status isEqualToString:@"0"]) {
         self.feedbackLabel.text = @"未反馈";
-    }else if ([model.projectstatus isEqualToString:@"1"]){
+    }else if ([model.status isEqualToString:@"1"]){
         self.feedbackLabel.text = @"已反馈";
     }
-    self.msgLabel.text = model.projectcontent;
+    self.msgLabel.text = [NSString stringWithFormat:@"地址:%@",model.address];
 }
 
 @end

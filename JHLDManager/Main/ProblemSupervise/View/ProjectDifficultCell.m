@@ -48,7 +48,7 @@
     }];
     self.nameLabel = nameLabel;
     nameLabel.font = FONT(16);
-    nameLabel.text = @"湖海塘公园项目";
+//    nameLabel.text = @"湖海塘公园项目";
     
     UILabel *typeLabel = [[UILabel alloc]init];
     [self.contentView addSubview:typeLabel];
@@ -58,7 +58,7 @@
     }];
     self.typeLabel = typeLabel;
     typeLabel.font = FONT(16);
-    typeLabel.text = @"示范项目";
+//    typeLabel.text = @"示范项目";
     //    typeLabel.textColor = baseColor;
     
 //    UILabel *feedbackLabel = [[UILabel alloc]init];
@@ -93,7 +93,7 @@
     self.msgLabel = msgLabel;
     msgLabel.textColor = RGBC(160);
     msgLabel.font = FONT(16);
-    msgLabel.text = @"项目进展太慢，现场很多垃圾，脏乱差。项目进展太慢，现场很多垃圾，脏乱差";
+//    msgLabel.text = @"项目进展太慢，现场很多垃圾，脏乱差。项目进展太慢，现场很多垃圾，脏乱差";
     
     UIView *line = [[UIView alloc]init];
     [self.contentView addSubview:line];
@@ -102,6 +102,16 @@
         make.height.mas_equalTo(1);
     }];
     line.backgroundColor = backgroudColor;
+}
+
+-(void)setModel:(ProjectDifficultyListModel *)model{
+    _model = model;
+    //    self.imgView.image = [UIImage imageNamed:@"bigLogo"];
+    [self.imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",URL,model.imageurl]] placeholderImage:[UIImage imageNamed:@"bigLogo"]];
+    self.nameLabel.text = model.projectname;
+    self.typeLabel.text = model.projecttype;
+    self.timeLabel.text = model.projecttime;
+    self.msgLabel.text = model.projectcontent;
 }
 
 @end

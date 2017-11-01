@@ -69,9 +69,9 @@
 -(NSMutableArray *)dataArray{
     if (!_dataArray) {
         _dataArray = [NSMutableArray arrayWithObjects:
-                      @{@"state":@"全部",@"stateCode":@"0"},
+                      @{@"state":@"全部",@"stateCode":@""},
+                      @{@"state":@"未反馈",@"stateCode":@"0"},
                       @{@"state":@"已反馈",@"stateCode":@"1"},
-                      @{@"state":@"未反馈",@"stateCode":@"2"},
                       nil];
     }
     return _dataArray;

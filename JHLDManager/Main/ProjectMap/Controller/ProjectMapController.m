@@ -7,9 +7,11 @@
 //
 
 #import "ProjectMapController.h"
+#import "ProjectListModel.h"
 
 @interface ProjectMapController ()<BMKMapViewDelegate,BMKLocationServiceDelegate>
 @property (nonatomic, strong) BMKMapView *mapView;
+@property (nonatomic, strong) NSMutableArray *projectArray;
 
 @end
 
@@ -31,6 +33,7 @@
     [segmentedControl addTarget:self action:@selector(segmentedControlValueChange:) forControlEvents:UIControlEventValueChanged];
     
     [self setUpBaiduMap];
+    [self loadData];
 }
 
 -(void)segmentedControlValueChange:(UISegmentedControl *)seg{
@@ -63,16 +66,43 @@
 //    NSLog(@"zoomLevel==%f",self.mapView.zoomLevel); NSLog(@"latitude==%f,longitude==%f",self.mapView.centerCoordinate.latitude,self.mapView.centerCoordinate.longitude);
 }
 -(void)setUpBaiduMap{
-    BMKMapView* mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT-NavgBar_HEIGHT-TabBar_HEIGHT)];
+    BMKMapView *mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT-NavgBar_HEIGHT-TabBar_HEIGHT)];
     [self.view addSubview:mapView];
     self.mapView = mapView;
     self.mapView.delegate = self;
     self.mapView.showMapScaleBar = YES;
     [_mapView setMapType:BMKMapTypeSatellite];
     self.mapView.zoomLevel = 13;
-    self.mapView.centerCoordinate = CLLocationCoordinate2DMake(29.487451, 119.298462);
+    self.mapView.centerCoordinate = CLLocationCoordinate2DMake(29.1099901, 119.659882);
     //设定地图View能否支持旋转
     self.mapView.rotateEnabled = NO;
 }
 
+-(void)loadData{
+    [RequestData AppPOST:@"exampleObjectList" parameters:nil response:^(id responseObject, BOOL responseOK, NSString *msg) {
+        if (responseOK) {
+            NSLog(@"%@",responseObject);
+//            for (NSDictionary *dict in responseObject) {
+//                ProjectListModel *model = [ProjectListModel mj_objectWithKeyValues:dict];
+//                [self.projectArray addObject:model];
+//
+//                BMKPointAnnotation *annotation = [[BMKPointAnnotation alloc]init];
+//                float lat = [model.projectLat floatValue];
+//                float lon = [model.projectLong floatValue];
+//                annotation.coordinate = CLLocationCoordinate2DMake(lat, lon);
+////                annotation.cityModel = cityModel;
+//                [self.mapView addAnnotation:annotation];
+//            }
+        }else{
+            [ProgressHUD showError:msg];
+        }
+    }];
+}
+
+-(NSMutableArray *)projectArray{
+    if (!_projectArray) {
+        _projectArray = [NSMutableArray array];
+    }
+    return _projectArray;
+}
 @end

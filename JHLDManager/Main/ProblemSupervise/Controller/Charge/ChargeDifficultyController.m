@@ -1,18 +1,16 @@
 //
-//  ManagerDifficultyController.m
+//  ChargeDifficultyController.m
 //  JHLDManager
 //
-//  Created by 杨亮 on 2017/10/30.
+//  Created by 杨亮 on 2017/11/1.
 //  Copyright © 2017年 booway.com. All rights reserved.
 //
 
-#import "ManagerDifficultyController.h"
+#import "ChargeDifficultyController.h"
 #import "ProjectDifficultCell.h"
 #import "ProjectDifficultyListModel.h"
-#import "ManagerDifficultyDetailController.h"
 
-
-@interface ManagerDifficultyController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
+@interface ChargeDifficultyController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, weak) UISearchBar *searchBar;
@@ -33,7 +31,7 @@
 
 @end
 
-@implementation ManagerDifficultyController
+@implementation ChargeDifficultyController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,10 +39,10 @@
     self.pagenum = 15;
     [self setUpButtons];
     [self setUpTableView];
-//    [self setUpButton];
+    [self setUpButton];
     [self loadData];
     
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveProjectMoni) name:@"saveProjectMoni" object:nil];
+    //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveProjectMoni) name:@"saveProjectMoni" object:nil];
 }
 -(void)saveProjectMoni{
     
@@ -160,28 +158,28 @@
             self.selectedView = self.typeView;
         }
             break;
-//        case 3:
-//        {
-//            if (!self.stateView) {
-//                StateView *stateView = [[StateView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 150)];
-//                self.stateView = stateView;
-//                stateView.backgroundColor = [UIColor whiteColor];
-//                [self.bgView addSubview:stateView];
-//                stateView.selectedCode = ^(NSString *code,NSString *name) {
-//                    if ([name isEqualToString:@"全部"]) {
-//                        [btn setTitle:@"状态" forState:UIControlStateNormal];
-//                    }else{
-//                        [btn setTitle:name forState:UIControlStateNormal];
-//                    }
-//                    self.projectstatus = code;
-//                    [self hiddenBgView];
-//                    [self loadData];
-//                };
-//            }
-//            self.stateView.hidden = NO;
-//            self.selectedView = self.stateView;
-//        }
-//            break;
+            //        case 3:
+            //        {
+            //            if (!self.stateView) {
+            //                StateView *stateView = [[StateView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 150)];
+            //                self.stateView = stateView;
+            //                stateView.backgroundColor = [UIColor whiteColor];
+            //                [self.bgView addSubview:stateView];
+            //                stateView.selectedCode = ^(NSString *code,NSString *name) {
+            //                    if ([name isEqualToString:@"全部"]) {
+            //                        [btn setTitle:@"状态" forState:UIControlStateNormal];
+            //                    }else{
+            //                        [btn setTitle:name forState:UIControlStateNormal];
+            //                    }
+            //                    self.projectstatus = code;
+            //                    [self hiddenBgView];
+            //                    [self loadData];
+            //                };
+            //            }
+            //            self.stateView.hidden = NO;
+            //            self.selectedView = self.stateView;
+            //        }
+            //            break;
             
         default:
             break;
@@ -216,24 +214,24 @@
     [self loadData];
 }
 
-//-(void)setUpButton{
-//    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [self.view addSubview:btn];
-//    CGFloat btnW = 60;
-//    btn.frame = CGRectMake(WIDTH-btnW-15, CGRectGetMaxY(self.tableView.frame)-btnW-30, btnW, btnW);
-//    btn.alpha = 0.5;
-//    [btn setTitle:@"发起督导" forState:UIControlStateNormal];
-//    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    btn.titleLabel.font = FONT(14);
-//    [btn rounded:btnW/2];
-//    [btn setBackgroundColor:baseColor forState:UIControlStateNormal];
-//    [btn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
-//}
+-(void)setUpButton{
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:btn];
+    CGFloat btnW = 60;
+    btn.frame = CGRectMake(WIDTH-btnW-15, CGRectGetMaxY(self.tableView.frame)-btnW-30, btnW, btnW);
+    btn.alpha = 0.5;
+    [btn setTitle:@"添加难点" forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    btn.titleLabel.font = FONT(14);
+    [btn rounded:btnW/2];
+    [btn setBackgroundColor:baseColor forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
+}
 
-//-(void)btnClick{
+-(void)btnClick{
 //    StartSupervisorViewController *VC = [[StartSupervisorViewController alloc]init];
 //    [self.navigationController pushViewController:VC animated:YES];
-//}
+}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataArray.count;
@@ -251,17 +249,17 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    ProjectDifficultyListModel *model = self.dataArray[indexPath.row];
-    ManagerDifficultyDetailController *detailVC = [[ManagerDifficultyDetailController alloc]init];
-    detailVC.diffid = model.diffid;
-    [self.navigationController pushViewController:detailVC animated:YES];
+//    ProjectDifficultyListModel *model = self.dataArray[indexPath.row];
+//    ManagerDifficultyDetailController *detailVC = [[ManagerDifficultyDetailController alloc]init];
+//    detailVC.diffid = model.diffid;
+//    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 -(void)loadData{
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setValue:self.areacode forKey:@"areacode"];
     [param setValue:self.projecttype forKey:@"projecttype"];
-//    [param setValue:self.projectstatus forKey:@"projectstatus"];
+    //    [param setValue:self.projectstatus forKey:@"projectstatus"];
     [param setValue:[NSString stringWithFormat:@"%d",self.pageindex] forKey:@"pageindex"];
     [param setValue:[NSString stringWithFormat:@"%d",self.pagenum] forKey:@"pagenum"];
     [RequestData AppPOST:@"projectDifficultyList" parameters:param response:^(id responseObject, BOOL responseOK, NSString *msg) {
@@ -295,4 +293,5 @@
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
 @end

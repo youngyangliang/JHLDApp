@@ -8,21 +8,18 @@
 
 #import "ManagerSuperviseController.h"
 #import "ProblemSuperviseCell.h"
-#import "SuperviseDetailController.h"
 #import "ProblemSuperviseModel.h"
-#import "AreaView.h"
-#import "TypeView.h"
-#import "StateView.h"
 #import "StartSupervisorViewController.h"
+#import "ManagerSuperviseDetailController.h"
 
-#define buttonsViewH 40
-#define searchViewH  0
 
 @interface ManagerSuperviseController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, weak) UISearchBar *searchBar;
 @property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, assign) int pageindex;
+@property (nonatomic, assign) int pagenum;
 
 @property (nonatomic, weak) UIView *bgView;
 @property (nonatomic, weak) UIButton *btn;
@@ -41,10 +38,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.pageindex = 1;
+    self.pagenum = 15;
     [self setUpButtons];
     [self setUpTableView];
     [self setUpButton];
+    [self loadData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveProjectMoni) name:@"saveProjectMoni" object:nil];
+}
+
+-(void)saveProjectMoni{
+    
     [self loadData];
 }
 -(void)setUpButtons{
@@ -118,9 +123,15 @@
                 AreaView *areaView = [[AreaView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 300)];
                 self.areaView = areaView;
                 areaView.selectedCode = ^(NSString *code,NSString *name) {
-                    [btn setTitle:name forState:UIControlStateNormal];
+                    if ([name isEqualToString:@"全部"]) {
+                        [btn setTitle:@"区域" forState:UIControlStateNormal];
+                    }else{
+                        [btn setTitle:name forState:UIControlStateNormal];
+                    }
+                    
                     self.areacode = code;
                     [self hiddenBgView];
+                    [self loadData];
                 };
                 areaView.backgroundColor = [UIColor whiteColor];
                 [self.bgView addSubview:areaView];
@@ -132,14 +143,19 @@
         case 2:
         {
             if (!self.typeView) {
-                TypeView *typeView = [[TypeView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 150)];
+                TypeView *typeView = [[TypeView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 200)];
                 self.typeView = typeView;
                 typeView.backgroundColor = [UIColor whiteColor];
                 [self.bgView addSubview:typeView];
                 typeView.selectedCode = ^(NSString *code,NSString *name) {
-                    [btn setTitle:name forState:UIControlStateNormal];
+                    if ([name isEqualToString:@"全部"]) {
+                        [btn setTitle:@"类型" forState:UIControlStateNormal];
+                    }else{
+                        [btn setTitle:name forState:UIControlStateNormal];
+                    }
                     self.projecttype = code;
                     [self hiddenBgView];
+                    [self loadData];
                 };
             }
             self.typeView.hidden = NO;
@@ -154,9 +170,14 @@
                 stateView.backgroundColor = [UIColor whiteColor];
                 [self.bgView addSubview:stateView];
                 stateView.selectedCode = ^(NSString *code,NSString *name) {
-                    [btn setTitle:name forState:UIControlStateNormal];
+                    if ([name isEqualToString:@"全部"]) {
+                        [btn setTitle:@"状态" forState:UIControlStateNormal];
+                    }else{
+                        [btn setTitle:name forState:UIControlStateNormal];
+                    }
                     self.projectstatus = code;
                     [self hiddenBgView];
+                    [self loadData];
                 };
             }
             self.stateView.hidden = NO;
@@ -188,7 +209,13 @@
     tableView.dataSource = self;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     tableView.tableFooterView = [[UIView alloc]init];
-    //    tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshNewData)];
+    tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshNewData)];
+}
+
+-(void)refreshNewData{
+    self.pageindex = 1;
+    self.pagenum = 15;
+    [self loadData];
 }
 
 -(void)setUpButton{
@@ -211,8 +238,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    //    return self.dataArray.count;
-    return 10;
+    return self.dataArray.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *ID = @"superviseCell";
@@ -220,7 +246,17 @@
     if (!cell) {
         cell = [[ProblemSuperviseCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
+    ProblemSuperviseModel *model = self.dataArray[indexPath.row];
+    cell.model = model;
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ProblemSuperviseModel *model = self.dataArray[indexPath.row];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    ManagerSuperviseDetailController *detailVC = [[ManagerSuperviseDetailController alloc]init];
+    detailVC.projectId = model.superid;
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 -(void)loadData{
@@ -228,9 +264,13 @@
     [param setValue:self.areacode forKey:@"areacode"];
     [param setValue:self.projecttype forKey:@"projecttype"];
     [param setValue:self.projectstatus forKey:@"projectstatus"];
+    [param setValue:[NSString stringWithFormat:@"%d",self.pageindex] forKey:@"pageindex"];
+    [param setValue:[NSString stringWithFormat:@"%d",self.pagenum] forKey:@"pagenum"];
     [RequestData AppPOST:@"projectMoniList" parameters:param response:^(id responseObject, BOOL responseOK, NSString *msg) {
+        [self endRefresh];
         if (responseOK) {
             NSLog(@"%@",responseObject);
+            [self.dataArray removeAllObjects];
             for (NSDictionary *dict in responseObject) {
                 ProblemSuperviseModel *model = [ProblemSuperviseModel mj_objectWithKeyValues:dict];
                 [self.dataArray addObject:model];
@@ -242,10 +282,19 @@
     }];
 }
 
+-(void)endRefresh{
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
+}
+
 -(NSMutableArray *)dataArray{
     if (!_dataArray) {
         _dataArray = [NSMutableArray array];
     }
     return _dataArray;
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end

@@ -1,18 +1,16 @@
 //
-//  ManagerDifficultyController.m
+//  ChargeSuperviseController.m
 //  JHLDManager
 //
-//  Created by 杨亮 on 2017/10/30.
+//  Created by 杨亮 on 2017/11/1.
 //  Copyright © 2017年 booway.com. All rights reserved.
 //
 
-#import "ManagerDifficultyController.h"
-#import "ProjectDifficultCell.h"
-#import "ProjectDifficultyListModel.h"
-#import "ManagerDifficultyDetailController.h"
+#import "ChargeSuperviseController.h"
+#import "ProblemSuperviseCell.h"
+#import "ProblemSuperviseModel.h"
 
-
-@interface ManagerDifficultyController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
+@interface ChargeSuperviseController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, weak) UISearchBar *searchBar;
@@ -29,11 +27,11 @@
 
 @property (nonatomic, copy) NSString *areacode;
 @property (nonatomic, copy) NSString *projecttype;
-//@property (nonatomic, copy) NSString *projectstatus;
+@property (nonatomic, copy) NSString *projectstatus;
 
 @end
 
-@implementation ManagerDifficultyController
+@implementation ChargeSuperviseController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -46,10 +44,7 @@
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveProjectMoni) name:@"saveProjectMoni" object:nil];
 }
--(void)saveProjectMoni{
-    
-    [self loadData];
-}
+
 -(void)setUpButtons{
     
     //    UISearchBar *searchBar = [[UISearchBar alloc] init];
@@ -61,7 +56,7 @@
     //    [searchBar setPlaceholder:@"请输入关键字"];
     //    [[UIBarButtonItem appearanceWhenContainedInInstancesOfClasses:@[[UISearchBar class]]] setTitle:@"取消"];
     
-    NSArray *textArray = @[@"区域",@"类型"];
+    NSArray *textArray = @[@"区域",@"类型",@"状态"];
     UIView *buttonsView = [[UIView alloc]initWithFrame:CGRectMake(0, searchViewH, WIDTH, buttonsViewH)];
     [self.view addSubview:buttonsView];
     buttonsView.backgroundColor = [UIColor whiteColor];
@@ -160,28 +155,28 @@
             self.selectedView = self.typeView;
         }
             break;
-//        case 3:
-//        {
-//            if (!self.stateView) {
-//                StateView *stateView = [[StateView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 150)];
-//                self.stateView = stateView;
-//                stateView.backgroundColor = [UIColor whiteColor];
-//                [self.bgView addSubview:stateView];
-//                stateView.selectedCode = ^(NSString *code,NSString *name) {
-//                    if ([name isEqualToString:@"全部"]) {
-//                        [btn setTitle:@"状态" forState:UIControlStateNormal];
-//                    }else{
-//                        [btn setTitle:name forState:UIControlStateNormal];
-//                    }
-//                    self.projectstatus = code;
-//                    [self hiddenBgView];
-//                    [self loadData];
-//                };
-//            }
-//            self.stateView.hidden = NO;
-//            self.selectedView = self.stateView;
-//        }
-//            break;
+        case 3:
+        {
+            if (!self.stateView) {
+                StateView *stateView = [[StateView alloc]initWithFrame:CGRectMake(0, 0, WIDTH, 150)];
+                self.stateView = stateView;
+                stateView.backgroundColor = [UIColor whiteColor];
+                [self.bgView addSubview:stateView];
+                stateView.selectedCode = ^(NSString *code,NSString *name) {
+                    if ([name isEqualToString:@"全部"]) {
+                        [btn setTitle:@"状态" forState:UIControlStateNormal];
+                    }else{
+                        [btn setTitle:name forState:UIControlStateNormal];
+                    }
+                    self.projectstatus = code;
+                    [self hiddenBgView];
+                    [self loadData];
+                };
+            }
+            self.stateView.hidden = NO;
+            self.selectedView = self.stateView;
+        }
+            break;
             
         default:
             break;
@@ -240,37 +235,37 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *ID = @"superviseCell";
-    ProjectDifficultCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    ProblemSuperviseCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (!cell) {
-        cell = [[ProjectDifficultCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        cell = [[ProblemSuperviseCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
-    ProjectDifficultyListModel *model = self.dataArray[indexPath.row];
+    ProblemSuperviseModel *model = self.dataArray[indexPath.row];
     cell.model = model;
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    ProjectDifficultyListModel *model = self.dataArray[indexPath.row];
-    ManagerDifficultyDetailController *detailVC = [[ManagerDifficultyDetailController alloc]init];
-    detailVC.diffid = model.diffid;
-    [self.navigationController pushViewController:detailVC animated:YES];
+//    ProblemSuperviseModel *model = self.dataArray[indexPath.row];
+//    ManagerSuperviseDetailController *detailVC = [[ManagerSuperviseDetailController alloc]init];
+//    detailVC.projectId = model.superid;
+//    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 -(void)loadData{
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setValue:self.areacode forKey:@"areacode"];
     [param setValue:self.projecttype forKey:@"projecttype"];
-//    [param setValue:self.projectstatus forKey:@"projectstatus"];
+    [param setValue:self.projectstatus forKey:@"projectstatus"];
     [param setValue:[NSString stringWithFormat:@"%d",self.pageindex] forKey:@"pageindex"];
     [param setValue:[NSString stringWithFormat:@"%d",self.pagenum] forKey:@"pagenum"];
-    [RequestData AppPOST:@"projectDifficultyList" parameters:param response:^(id responseObject, BOOL responseOK, NSString *msg) {
+    [RequestData AppPOST:@"projectMoniList" parameters:param response:^(id responseObject, BOOL responseOK, NSString *msg) {
         [self endRefresh];
         if (responseOK) {
             NSLog(@"%@",responseObject);
             [self.dataArray removeAllObjects];
             for (NSDictionary *dict in responseObject) {
-                ProjectDifficultyListModel *model = [ProjectDifficultyListModel mj_objectWithKeyValues:dict];
+                ProblemSuperviseModel *model = [ProblemSuperviseModel mj_objectWithKeyValues:dict];
                 [self.dataArray addObject:model];
             }
             [self.tableView reloadData];

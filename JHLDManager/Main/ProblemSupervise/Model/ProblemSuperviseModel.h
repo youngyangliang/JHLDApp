@@ -9,11 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface ProblemSuperviseModel : NSObject
-@property (nonatomic, copy) NSString *projectid;
-@property (nonatomic, copy) NSString *projectname;
-@property (nonatomic, copy) NSString *projecttype;
+@property (nonatomic, copy) NSString *superid;
 @property (nonatomic, copy) NSString *projecttime;
 @property (nonatomic, copy) NSString *projectstatus;
+@property (nonatomic, copy) NSString *projectname;
+@property (nonatomic, copy) NSString *levelname;
+@property (nonatomic, copy) NSString *levelcode;
 @property (nonatomic, copy) NSString *projectcontent;
 @property (nonatomic, copy) NSString *imageurl;
 

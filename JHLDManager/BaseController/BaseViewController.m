@@ -18,7 +18,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = backgroudColor;
     if (@available(iOS 11.0, *)) {
-        //        self.scrollview.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        
     }else{
         self.automaticallyAdjustsScrollViewInsets = NO;
     }

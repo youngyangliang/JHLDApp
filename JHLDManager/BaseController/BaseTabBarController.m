@@ -10,9 +10,10 @@
 #import "NavViewController.h"
 #import "HomeViewController.h"
 #import "MeCentreController.h"
-//#import "ProblemSuperviseController.h"
-#import "ManagerProblemSuperviseController.h"
 #import "ProjectMapController.h"
+#import "ManagerProblemSuperviseController.h"
+#import "ChargeProblemSuperviseController.h"
+#import "PublicReactController.h"
 
 @interface BaseTabBarController ()
 
@@ -30,7 +31,9 @@
 -(void)addChildViewControllers{
     [self addChildViewController:[[HomeViewController alloc]init] title:@"廊道动态" imageName:@"home"];
     [self addChildViewController:[[ProjectMapController alloc]init] title:@"项目博览" imageName:@"ProjectMap"];
-    [self addChildViewController:[[ManagerProblemSuperviseController alloc]init] title:@"问题督导" imageName:@"ProblemSupervise"];
+//    [self addChildViewController:[[ManagerProblemSuperviseController alloc]init] title:@"问题督导" imageName:@"ProblemSupervise"];
+//    [self addChildViewController:[[ChargeProblemSuperviseController alloc]init] title:@"问题督导" imageName:@"ProblemSupervise"];
+    [self addChildViewController:[[PublicReactController alloc]init] title:@"问题督导" imageName:@"ProblemSupervise"];
     [self addChildViewController:[[MeCentreController alloc]init] title:@"个人中心" imageName:@"MeCentre"];
 }
 -(void)addChildViewController:(UIViewController *)childController title:(NSString *)title imageName:(NSString *)imageName {

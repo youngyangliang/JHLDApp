@@ -9,14 +9,20 @@
 #ifndef Header_h
 #define Header_h
 
-#import "UIButton+FillColor.h"
-#import "UIView+Category.h"
 #import "BaseScrollView.h"
 #import "BaseTableView.h"
 #import "Helper.h"
 #import "RequestData.h"
 #import "ProgressHUD.h"
 #import "YLTextField.h"
+
+#import "NSArray+Log.h"
+#import "UIButton+FillColor.h"
+#import "UIView+Category.h"
+
+#import "AreaView.h"
+#import "TypeView.h"
+#import "StateView.h"
 
 
 #import <Masonry/Masonry.h>
@@ -30,6 +36,7 @@
 #import <IQKeyboardManager.h>
 #import <YBPopupMenu.h>
 #import <SGPagingView.h>
+#import <TZImagePickerController.h>
 #import <BaiduMapAPI_Base/BMKBaseComponent.h>//引入base相关所有的头文件
 
 #import <BaiduMapAPI_Map/BMKMapComponent.h>//引入地图功能所有的头文件

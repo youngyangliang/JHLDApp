@@ -69,13 +69,20 @@
 -(NSMutableArray *)dataArray{
     if (!_dataArray) {
         _dataArray = [NSMutableArray arrayWithObjects:
-                  @{@"area":@"全部",@"areaCode":@"0"},
-                  @{@"area":@"婺城区",@"areaCode":@"1"},
-                  @{@"area":@"金东区",@"areaCode":@"2"},
-                  @{@"area":@"金东区",@"areaCode":@"3"},
-                  @{@"area":@"金东区",@"areaCode":@"4"},
-                  @{@"area":@"金东区",@"areaCode":@"5"},
-                  @{@"area":@"金东区",@"areaCode":@"6"},
+                      @{@"area":@"全部",@"areaCode":@""},
+                      @{@"area":@"婺城区",@"areaCode":@"330702"},
+                      @{@"area":@"金东区",@"areaCode":@"330703"},
+                      @{@"area":@"武义县",@"areaCode":@"330723"},
+                      @{@"area":@"浦江县",@"areaCode":@"330726"},
+                      @{@"area":@"磐安县",@"areaCode":@"330727"},
+                      @{@"area":@"兰溪市",@"areaCode":@"330781"},
+                      @{@"area":@"义乌市",@"areaCode":@"330782"},
+                      @{@"area":@"东阳市",@"areaCode":@"330783"},
+                      @{@"area":@"永康市",@"areaCode":@"330784"},
+                      @{@"area":@"金华开发区",@"areaCode":@"330704"},
+                      @{@"area":@"金义都市新区",@"areaCode":@"330705"},
+                      @{@"area":@"金华山旅游经济区",@"areaCode":@"330706"},
+                      
                       nil];
     }
     return _dataArray;
